@@ -26,6 +26,9 @@ class Item
     #[ORM\ManyToOne(inversedBy: 'items')]
     private Image $image;
 
+    #[ORM\ManyToMany(targetEntity: GeneratedChampion::class, mappedBy: 'items')]
+    private array $generatedChampions;
+
     #[ORM\Column]
     private Boolean $isBotte;
 
@@ -75,6 +78,17 @@ class Item
     public function setImage(Image $image): Item
     {
         $this->image = $image;
+        return $this;
+    }
+
+    public function getGeneratedChampions(): array
+    {
+        return $this->generatedChampions;
+    }
+
+    public function setGeneratedChampions(array $generatedChampions): Item
+    {
+        $this->generatedChampions = $generatedChampions;
         return $this;
     }
 }

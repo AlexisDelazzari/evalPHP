@@ -13,6 +13,18 @@ class SecondaryRune
     #[ORM\Column]
     private ?int $id = null;
 
+    #[ORM\Column]
+    private string $name;
+
+    #[ORM\Column]
+    private string $description;
+
+    #[ORM\OneToOne]
+    private Image $image;
+
+    #[ORM\ManyToOne]
+    private PrimaryRune $primaryRune;
+
     public function getId(): ?int
     {
         return $this->id;

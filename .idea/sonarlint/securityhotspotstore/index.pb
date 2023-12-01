@@ -3,8 +3,6 @@
 	README.md,8\e\8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
 C
 src/Entity/Item.php,d\4\d455f364c39f897d5297b8d31dd92ecff47d35ce
-S
-#src/Repository/BottesRepository.php,1\5\156d34d9900e20f69ed88ad7b715cb68a4bbfa80
 H
 templates/base.html.twig,f\f\ffb3f1cfd73fdec1f0c80c63d0b5bbc1fff22022
 G
@@ -13,3 +11,40 @@ C
 src/Entity/User.php,0\a\0a3e99b9da178509aeb5b3fa6f5dce46bc0eb8be
 j
 :vendor/doctrine/orm/lib/Doctrine/ORM/Mapping/ManyToOne.php,8\7\87ada314d60ec8bd372cd86618bab411e0da4b80
+:
+
+.gitignore,a\5\a5cc2925ca8258af241be7e5b0381edf30266302
+Q
+!src/Repository/UserRepository.php,9\4\943a623b5e2fd95ea78f6287fc600a6f8e0a5235
+J
+src/Entity/PrimaryRune.php,e\6\e685724fe5bd40bd424bb69efef2897f8041b073
+G
+src/Entity/Summoner.php,d\6\d6f3375f688f05d38771dd0e530d1b0474ba8d9b
+L
+src/Entity/SecondaryRune.php,c\f\cfe94a3c1cac5d200b3a59556b0ef1e84b2c091d
+D
+src/Entity/Image.php,f\0\f05d6e2bb75f1a6c4aa85d8cfaa1c0fe0013e2d2
+P
+ src/Entity/GeneratedChampion.php,3\b\3b1a0b9ff9628c5a3cbe72d22cf7ba829b3492d1
+U
+%src/Repository/ChampionRepository.php,a\e\ae1d3a31230c9027b77798f7c8a3ae3136b4d081
+J
+src/Entity/Commentaire.php,2\3\237b02d0deb563d7832f745a6283cc5b44c021cd
+T
+$migrations/Version20231201072749.php,e\5\e5e7764c9bcebbd55415466b68276c80b637d14d
+T
+$migrations/Version20231201073050.php,e\0\e021f630c9d2c41ed0d045cedcc7024ecff8c3b6
+M
+config/packages/security.yaml,c\5\c5f941b4d4e9404f23935164fabdd261abb68e93
+Q
+!src/Controller/TestController.php,0\1\0145d217073c515a318cf318ec045f4c9988c6d0
+P
+ src/Controller/AppController.php,0\9\09652a6497de0403bd2090e61381ced4d8bf7fe3
+Q
+!src/Controller/UserController.php,8\7\87b99206717ccce222f05190f36b6273e3ea6228
+Y
+)src/Controller/RegistrationController.php,b\6\b6a5dce1eac6107738aa6c9b363b605aa2315b2c
+R
+"src/Controller/LoginController.php,3\7\3752fbffcbb946366b35fcaa7e54210c60429249
+O
+templates/login/index.html.twig,4\0\40a9796f0f09c34b67a9fdfee0a86a2e8c2e3b7c
