@@ -26,7 +26,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private string $email;
 
     #[ORM\Column]
-    private Boolean $isAdmin;
+    private String $isAdmin;
+
+    #[ORM\OneToMany(mappedBy: 'user',targetEntity: GeneratedChampion::class)]
+    private array $generatedChampions;
 
     public function getId(): ?int
     {
@@ -44,6 +47,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
+    /**
+     * @see PasswordAuthenticatedUserInterface
+     */
     public function getPassword(): string
     {
         return $this->password;
@@ -66,29 +72,53 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getIsAdmin(): Boolean
+    public function getIsAdmin(): String
     {
         return $this->isAdmin;
     }
 
-    public function setIsAdmin(Boolean $isAdmin): User
+    public function setIsAdmin(String $isAdmin): User
     {
         $this->isAdmin = $isAdmin;
         return $this;
     }
 
-    public function getRoles(): array
+    public function getGeneratedChampions(): array
     {
-        // TODO: Implement getRoles() method.
+        return $this->generatedChampions;
     }
 
+    public function setGeneratedChampions(array $generatedChampions): User
+    {
+        $this->generatedChampions = $generatedChampions;
+        return $this;
+    }
+
+    /**
+     * @see UserInterface
+     */
+    public function getRoles(): array
+    {
+        $roles = ['ROLE_USER'];
+        if ($this->isAdmin == '1') {
+            $roles[] = 'ROLE_ADMIN';
+        }
+        return $roles;
+    }
+
+    /**
+     * @see UserInterface
+     */
     public function eraseCredentials()
     {
         // TODO: Implement eraseCredentials() method.
     }
 
+    /**
+     * @see UserInterface
+     */
     public function getUserIdentifier(): string
     {
-        // TODO: Implement getUserIdentifier() method.
+        return $this->username;
     }
 }

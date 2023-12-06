@@ -1,0 +1,40 @@
+Champion_Aléatoire: 'Champion Aléatoire'
+Admin: 'Admin'
+Compte: 'Compte'
+Déconnexion: 'Déconnexion'
+Français: 'Français'
+English: 'English'
+
+security:
+  bad_credentials: "Identifiants invalides."
+  user_not_found: "Aucun utilisateur trouvé pour l'adresse email '{{ username }}'."
+  user_account_disabled: "Le compte utilisateur est désactivé."
+  user_account_expired: "Le compte utilisateur a expiré."
+  user_account_locked: "Le compte utilisateur est verrouillé."
+  user_cannot_impersonate: "Vous ne pouvez pas vous faire passer pour cet utilisateur."
+  user_password_expired: "Le mot de passe de l'utilisateur a expiré."
+
+labels:
+  email: "Email :"
+  password: "Mot de passe :"
+  log_in: "Se connecter"
+
+errors:
+  invalid_email: "Veuillez entrer une adresse email valide."
+  required_email: "L'adresse email est requise."
+  required_password: "Le mot de passe est requis."
+
+Random_Champion: "Champion Aléatoire"
+Account: "Compte"
+French: "Français"
+Logout: "Déconnexion"
+
+Espace_Admin: "Espace Admin"
+Utilisateur: "Utilisateur"
+Retour: "Retour"
+CHAMPION_GÉNÉRÉ: "CHAMPION GÉNÉRÉ"
+Nombre_champion_généré: "Nombre de champion généré"
+Nombre_champion_généré_par_utilisateur: "Nombre de champion généré par utilisateur"
+Nombre_champion_validé: "Nombre de champion validé"
+Voir_en_détail: "Voir en détail"
+

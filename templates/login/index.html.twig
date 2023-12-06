@@ -1,21 +1,44 @@
 {# templates/login/index.html.twig #}
 {% extends 'base.html.twig' %}
 
-{# ... #}
+{# Include Bootstrap CSS and JS #}
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
 
 {% block body %}
-    {% if error %}
-        <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-    {% endif %}
+    <div class="container loginContainer bg-dark">
+        {% if error %}
+            <div class="alert alert-danger" role="alert">
+                {{ error.messageKey|trans(error.messageData, 'security') }}
+            </div>
+        {% endif %}
 
-    <form action="{{ path('app_login') }}" method="post">
-        <label for="username">Email:</label>
-        <input type="text" id="username" name="_username" value="{{ last_username }}">
+        <form class="form-inline" method="get" action="">
+            <div class="d-flex justify-content-between align-items-center w-100">
+                <a href="?_locale=fr" class="float-left" onclick="this.submit(); return false;">
+                    <img class="mr-2 img-fluid" src="{{ asset('images/flags/france.png') }}" alt="French Flag" style="max-width: 100px;">
+                </a>
+                <a href="?_locale=en" class="float-right" onclick="this.submit(); return false;">
+                    <img class="img-fluid" src="{{ asset('images/flags/anglais.png') }}" alt="English Flag" style="max-width: 100px;">
+                </a>
+            </div>
+        </form>
 
-        <label for="password">Mot de passe:</label>
-        <input type="password" id="password" name="_password">
+        <form action="{{ path('app_login') }}" method="post">
+            <div class="form-group">
+                <label for="username">{{ 'labels.email'|trans }}</label>
+                <input type="text" class="form-control border-success" id="username" name="_username" value="{{ last_username }}">
+            </div>
 
-         <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
-        <button type="submit">Connexion</button>
-    </form>
+            <div class="form-group">
+                <label for="password">{{ 'labels.password'|trans }}</label>
+                <input type="password" class="form-control border-success" id="password" name="_password">
+            </div>
+
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+            <button type="submit" class="btn btn-success btn-block mt-5 ">{{ 'labels.log_in'|trans }}</button>
+        </form>
+    </div>
 {% endblock %}

@@ -37,11 +37,14 @@ class GeneratedChampion
     #[ORM\JoinTable(name: 'generated_champion_item')]
     private array $items;
 
-    #[ORM\OneToOne(inversedBy: 'generatedChampion')]
+    #[ORM\ManyToOne(inversedBy: 'generatedChampions')]
     private User $user;
 
     #[ORM\OneToMany(mappedBy: 'generatedChampion',targetEntity: Commentaire::class)]
     private array $commentaires;
+
+    #[ORM\OneToOne(mappedBy: 'generatedChampion',targetEntity: RandomName::class)]
+    private RandomName $randomName;
 
 
     public function getStatus(): Enum

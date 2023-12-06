@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\PrimaryRuneRepository;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: PrimaryRuneRepository::class)]
@@ -19,11 +20,11 @@ class PrimaryRune
     #[ORM\Column]
     private string $description;
 
-    #[ORM\OneToOne(inversedBy: 'primaryRune')]
-    private Image $image;
+    #[ORM\Column]
+    private string $image;
 
     #[ORM\OneToMany(mappedBy: 'primaryRune',targetEntity: SecondaryRune::class)]
-    private array $secondaryRunes;
+    private Collection $secondaryRunes;
 
     public function getId(): ?int
     {
@@ -52,12 +53,12 @@ class PrimaryRune
         return $this;
     }
 
-    public function getImage(): Image
+    public function getImage(): string
     {
         return $this->image;
     }
 
-    public function setImage(Image $image): PrimaryRune
+    public function setImage(string $image): PrimaryRune
     {
         $this->image = $image;
         return $this;

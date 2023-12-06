@@ -1,0 +1,49 @@
+{# templates/home/index.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">{{ 'Espace_Admin'|trans }}</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link {% if app.request.attributes.get('_route') == 'app_user' %}active{% endif %}" href="{{ path('app_user') }}">{{ 'Utilisateur'|trans }}</a>
+                </li>
+            </ul>
+        </div>
+        <form class="form-inline">
+            <select class="custom-select mr-2" name="_locale" onchange="this.form.submit()">
+                <option value="fr" {% if app.request.locale == 'fr' %}selected{% endif %}>
+                    <img class="mr-2" src="{{ asset('images/flags/france.png') }}" alt="French Flag"> {{ 'Français'|trans }}
+                </option>
+                <option value="en" {% if app.request.locale == 'en' %}selected{% endif %}>
+                    <img src="{{ asset('images/flags/anglais.png') }}" alt="English Flag"> {{ 'English'|trans }}
+                </option>
+            </select>
+            <a href="{{ path('app_home') }}" class="btn btn-outline-danger">{{ 'Retour'|trans }}</a>
+        </form>
+    </nav>
+
+    <div class="container mt-3">
+        <h1>{{ 'Espace_Admin'|trans }}</h1>
+
+        <div class="card bg-dark" style="width: 18rem;">
+            <div class="card-header" style="font-weight: bold;text-align: center;">
+                {{ 'CHAMPION_GÉNÉRÉ'|trans }}
+            </div>
+            <div class="card-body">
+                <p class="card-text">{{ 'Nombre_champion_généré'|trans }}  </p>
+                <p style="font-weight: bold;color: #17a2b8;text-align: center">5000</p>
+                <p class="card-text">{{ 'Nombre_champion_généré_par_utilisateur'|trans }} : </p>
+                <p style="font-weight: bold;color: #17a2b8;text-align: center">5000</p>
+                <p class="card-text">{{ 'Nombre_champion_validé'|trans }} : </p>
+                <p style="font-weight: bold;color: #17a2b8;text-align: center">5000</p>
+                <p style="text-align: center"><a  href="{{ path('app_champion') }}" class="btn btn-outline-info">{{ 'Voir_en_détail'|trans }}</a></p>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

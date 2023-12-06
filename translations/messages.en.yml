@@ -1,0 +1,39 @@
+Champion_Aléatoire: 'Random Champion'
+Admin: 'Admin'
+Compte: 'Account'
+Déconnexion: 'Logout'
+Français: 'French'
+English: 'English'
+
+security:
+  bad_credentials: "Invalid credentials."
+  user_not_found: "No user found for email '{{ username }}'."
+  user_account_disabled: "User account is disabled."
+  user_account_expired: "User account has expired."
+  user_account_locked: "User account is locked."
+  user_cannot_impersonate: "You cannot impersonate this user."
+  user_password_expired: "User's password has expired."
+
+labels:
+  email: "Email :"
+  password: "Password :"
+  log_in: "Log in"
+
+errors:
+  invalid_email: "Please enter a valid email address."
+  required_email: "Email address is required."
+  required_password: "Password is required."
+
+Random_Champion: "Random Champion"
+Account: "Account"
+French: "French"
+Logout: "Logout"
+
+Espace_Admin: "Admin Space"
+Utilisateur: "User"
+Retour: "Back"
+CHAMPION_GÉNÉRÉ: "GENERATED CHAMPION"
+Nombre_champion_généré: "Number of champions generated"
+Nombre_champion_généré_par_utilisateur: "Number of champions generated per user"
+Nombre_champion_validé: "Number of validated champions"
+Voir_en_détail: "View in detail"

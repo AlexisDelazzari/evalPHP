@@ -1,20 +1,36 @@
+{# templates/home/index.html.twig #}
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello AppController!{% endblock %}
-
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">{{ 'Random_Champion'|trans }}</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link {% if app.request.attributes.get('_route') == 'app_admin' %}active{% endif %}" href="{{ path('app_admin') }}">{{ 'Admin'|trans }}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {% if app.request.attributes.get('_route') == 'app_user' %}active{% endif %}" href="{{ path('app_user') }}">{{ 'Account'|trans }}</a>
+                </li>
+            </ul>
+        </div>
+        <form class="form-inline" method="get" action="">
+            <select class="custom-select" name="_locale" onchange="this.form.submit()">
+                <option value="fr" {% if app.request.locale == 'fr' %}selected{% endif %}>
+                    <img class="mr-2" src="{{ asset('images/flags/france.png') }}" alt="French Flag"> {{ 'French'|trans }}
+                </option>
+                <option value="en" {% if app.request.locale == 'en' %}selected{% endif %}>
+                    <img src="{{ asset('images/flags/anglais.png') }}" alt="English Flag"> {{ 'English'|trans }}
+                </option>
+            </select>
+            <a href="{{ path('app_logout') }}" class="btn btn-outline-danger ml-2">{{ 'Logout'|trans }}</a>
+        </form>
+    </nav>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/wamp642/www/eval/src/Controller/AppController.php'|file_link(0) }}">src/Controller/AppController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/wamp642/www/eval/templates/app/index.html.twig'|file_link(0) }}">templates/app/index.html.twig</a></code></li>
-    </ul>
-</div>
+    <div class="container mt-3">
+        <h1>{{ 'Random_Champion'|trans }}</h1>
+    </div>
 {% endblock %}

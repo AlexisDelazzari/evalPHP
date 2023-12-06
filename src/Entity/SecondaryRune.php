@@ -17,10 +17,7 @@ class SecondaryRune
     private string $name;
 
     #[ORM\Column]
-    private string $description;
-
-    #[ORM\OneToOne]
-    private Image $image;
+    private string $image;
 
     #[ORM\ManyToOne]
     private PrimaryRune $primaryRune;
@@ -28,5 +25,38 @@ class SecondaryRune
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function getName(): string
+    {
+        return $this->name;
+    }
+
+    public function setName(string $name): SecondaryRune
+    {
+        $this->name = $name;
+        return $this;
+    }
+
+    public function getImage(): string
+    {
+        return $this->image;
+    }
+
+    public function setImage(string $image): SecondaryRune
+    {
+        $this->image = $image;
+        return $this;
+    }
+
+    public function getPrimaryRune(): PrimaryRune
+    {
+        return $this->primaryRune;
+    }
+
+    public function setPrimaryRune(PrimaryRune $primaryRune): SecondaryRune
+    {
+        $this->primaryRune = $primaryRune;
+        return $this;
     }
 }
