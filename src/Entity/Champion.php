@@ -19,8 +19,8 @@ class Champion
     #[ORM\Column]
     private string $description;
 
-    #[ORM\OneToOne(inversedBy: 'champion')]
-    private Image $image;
+    #[ORM\Column]
+    private string $image;
 
     public function getId(): ?int
     {
@@ -49,12 +49,12 @@ class Champion
         return $this;
     }
 
-    public function getImage(): Image
+    public function getImage(): string
     {
         return $this->image;
     }
 
-    public function setImage(Image $image): Champion
+    public function setImage(string $image): Champion
     {
         $this->image = $image;
         return $this;
