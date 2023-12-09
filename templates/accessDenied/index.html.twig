@@ -1,0 +1,31 @@
+{# templates/access_denied.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'access_denied.title'|trans }}{% endblock %}
+
+{% block body %}
+<form class="form-inline" method="get" action="">
+        <div class="d-flex justify-content-between align-items-center w-100">
+            <a href="?_locale=fr" class="float-left" onclick="this.submit(); return false;">
+                <img class="mr-2 img-fluid" src="{{ asset('images/flags/france.png') }}" alt="French Flag" style="max-width: 100px;">
+            </a>
+            <a href="{{ path('app_application') }}" class="btn btn-outline-danger">{{ 'Retour'|trans }}</a>
+            <a href="?_locale=en" class="float-right" onclick="this.submit(); return false;">
+                <img class="img-fluid" src="{{ asset('images/flags/anglais.png') }}" alt="English Flag" style="max-width: 100px;">
+            </a>
+        </div>
+    </form>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8 text-center">
+                <div class="alert alert-danger" role="alert">
+                    <h1 class="alert-heading">{{ 'access_denied.heading'|trans }}</h1>
+                    <p class="lead">{{ 'access_denied.message'|trans }}</p>
+                    <p>{{ 'access_denied.reserved'|trans }}</p>
+                    <hr>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

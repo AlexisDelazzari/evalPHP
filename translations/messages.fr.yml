@@ -109,3 +109,10 @@ champion:
 rune:
   nb_generate_primary: "Nombre de rune primaire généré"
   nb_generate_secondary: "Nombre de rune secondaire généré"
+
+access_denied:
+  title: Accès refusé
+  heading: Accès refusé !
+  message: Vous n'avez pas accès à cette page.
+  reserved: Cette page est réservée aux modérateurs du site.
+  home_link: Retour à la Page d'Accueil

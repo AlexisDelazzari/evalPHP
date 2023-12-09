@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use phpDocumentor\Reflection\Types\Boolean;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -29,7 +30,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private String $isAdmin;
 
     #[ORM\OneToMany(mappedBy: 'user',targetEntity: GeneratedChampion::class)]
-    private array $generatedChampions;
+    private Collection $generatedChampions;
 
     public function getId(): ?int
     {
@@ -83,12 +84,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getGeneratedChampions(): array
+    public function getGeneratedChampions(): Collection
     {
         return $this->generatedChampions;
     }
 
-    public function setGeneratedChampions(array $generatedChampions): User
+    public function setGeneratedChampions(Collection $generatedChampions): User
     {
         $this->generatedChampions = $generatedChampions;
         return $this;

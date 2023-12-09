@@ -1,5 +1,8 @@
 {% extends 'base.html.twig' %}
 {% block body %}
+    <div class="logout-button" style="text-align: right; margin-right: 20px; margin-top: 20px; margin-bottom: -75px;">
+        <a href="{{ path('app_logout') }}" class="btn btn-outline-danger">{{ 'Logout'|trans }}</a>
+    </div>
     <div class="container">
         <div id="container">
             <div class="image-container" onmouseover="zoomIn(this)" onmouseout="zoomOut(this)">

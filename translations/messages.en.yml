@@ -107,3 +107,10 @@ champion:
 rune:
   nb_generate_primary: "Number of primary runes generated"
   nb_generate_secondary: "Number of secondary runes generated"
+
+access_denied:
+  title: Access Denied
+  heading: Access Denied!
+  message: You do not have access to this page.
+  reserved: This page is reserved for site moderators.
+  home_link: Back to Home Page
