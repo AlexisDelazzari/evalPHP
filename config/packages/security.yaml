@@ -23,9 +23,9 @@ security:
                 target: app_home
 
     access_control:
-         - { path: ^/admin, roles: ROLE_ADMIN }
-         - { path: ^/champion, roles: ROLE_USER }
-         - { path: ^/home, roles: ROLE_USER }
+          #- { path: ^/admin, roles: ROLE_ADMIN }
+         #- { path: ^/champion, roles: ROLE_USER }
+         #- { path: ^/home, roles: ROLE_USER }
 
 
 when@test:

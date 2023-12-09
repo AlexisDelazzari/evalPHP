@@ -5,6 +5,7 @@ Déconnexion: 'Logout'
 Français: 'French'
 English: 'English'
 
+#login
 security:
   bad_credentials: "Invalid credentials."
   user_not_found: "No user found for email '{{ username }}'."
@@ -29,6 +30,7 @@ Account: "Account"
 French: "French"
 Logout: "Logout"
 
+#espace admin
 Espace_Admin: "Admin Space"
 Utilisateur: "User"
 Retour: "Back"
@@ -37,3 +39,71 @@ Nombre_champion_généré: "Number of champions generated"
 Nombre_champion_généré_par_utilisateur: "Number of champions generated per user"
 Nombre_champion_validé: "Number of validated champions"
 Voir_en_détail: "View in detail"
+
+#secondary runes
+secondary_runes:
+  Dark_Harvest: "Dark Harvest"
+  Predator: "Predator"
+  Hail_of_Blade: "Hail of Blades"
+  First_Strike: "First Strike"
+  Glacial_Augment: "Glacial Augment"
+  Unsealed_Spellbook: "Unsealed Spellbook"
+  Conqueror: "Conqueror"
+  Fleet_Footwork: "Fleet Footwork"
+  Lethal_Tempo: "Lethal Tempo"
+  Press_the_Attack: "Press the Attack"
+  Grasp_of_the_Undying: "Grasp of the Undying"
+  Aftershock: "Aftershock"
+  Guardian: "Guardian"
+  Arcane_Comet: "Arcane Comet"
+  Phase_Rush: "Phase Rush"
+  Summon_Aery: "Summon Aery"
+  Electrocution: "Electrocution"
+
+
+#primary runes
+primary_runes:
+  Inspiration: "Inspiration"
+  Sorcery: "Sorcery"
+  Resolve: "Resolve"
+  Domination: "Domination"
+  Precision: "Precision"
+  descPrecision: "Increases attack damage and attack speed"
+  descDomination: "Significant damage, enhancement of damage and mobility"
+  descSorcery: "Significant damage, enhancement of damage and mobility"
+  descInspiration: "Varied and utility effects"
+  descResolve: "Durability and crowd control"
+
+input:
+  update: "Update"
+  create: "Create"
+  delete: "Delete"
+  save: "Save"
+  add: "Add"
+
+form:
+  name: "Name"
+  description: "Description"
+  image: "Image"
+  color: "Color"
+
+create_secondary_rune: "Create secondary rune"
+imageRune: "Rune image"
+
+admin:
+  generate_champ: "Entity generated champions"
+  champion: "Champion management"
+  primary: "Rune management"
+
+generate_champ:
+  nb_generate: "Number of generated champions"
+  nb_validate: "Number of validated champions"
+  nb_refuse: "Number of refused champions"
+  moyenne: "Average number of champions generated per user"
+
+champion:
+  nb_generate: "Number of champions generated"
+
+rune:
+  nb_generate_primary: "Number of primary runes generated"
+  nb_generate_secondary: "Number of secondary runes generated"

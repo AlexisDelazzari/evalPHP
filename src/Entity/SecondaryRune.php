@@ -19,7 +19,7 @@ class SecondaryRune
     #[ORM\Column]
     private string $image;
 
-    #[ORM\ManyToOne]
+    #[ORM\ManyToOne(targetEntity: PrimaryRune::class, inversedBy: 'secondaryRunes')]
     private PrimaryRune $primaryRune;
 
     public function getId(): ?int

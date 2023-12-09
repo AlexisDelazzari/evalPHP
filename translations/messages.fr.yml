@@ -5,6 +5,7 @@ Déconnexion: 'Déconnexion'
 Français: 'Français'
 English: 'English'
 
+#login
 security:
   bad_credentials: "Identifiants invalides."
   user_not_found: "Aucun utilisateur trouvé pour l'adresse email '{{ username }}'."
@@ -29,6 +30,7 @@ Account: "Compte"
 French: "Français"
 Logout: "Déconnexion"
 
+#espace admin
 Espace_Admin: "Espace Admin"
 Utilisateur: "Utilisateur"
 Retour: "Retour"
@@ -38,3 +40,72 @@ Nombre_champion_généré_par_utilisateur: "Nombre de champion généré par uti
 Nombre_champion_validé: "Nombre de champion validé"
 Voir_en_détail: "Voir en détail"
 
+#secondary runes
+secondary_runes:
+  Electrocution: "Electrocution"
+  Dark_Harvest: "Moisson Noire"
+  Predator: "Prédateur"
+  Hail_of_Blade: "Déluge de lames"
+  First_Strike: "Première Frappe"
+  Glacial_Augment: "Augmentation Glaciale"
+  Unsealed_Spellbook: "Grimoire Déscellé"
+  Conqueror: "Conquérant"
+  Fleet_Footwork: "Jeu de Jambes"
+  Lethal_Tempo: "Tempo Mortel"
+  Press_the_Attack: "Attaque Soutenue"
+  Grasp_of_the_Undying: "Poigne de l'immortel"
+  Aftershock: "Réplique"
+  Guardian: "Gardien"
+  Arcane_Comet: "Comète Arcanique"
+  Phase_Rush: "Rush phasique"
+  Summon_Aery: "Invocation d'Aery"
+
+#primary runes
+primary_runes:
+  Inspiration: "Inspiration"
+  Sorcery: "Sorcellerie"
+  Resolve: "Résolution"
+  Domination: "Domination"
+  Precision: "Précision"
+  descPrecision: "Augmente les dégâts d'attaque et la vitesse d'attaque"
+  descDomination: "Dégâts importants, amélioration des dégâts et de la mobilité"
+  descSorcery: "Dégâts importants, amélioration des dégâts et de la mobilité"
+  descInspiration: "Effets variés et utilitaires"
+  descResolve: "Durabilité et contrôle des foules"
+
+
+
+imageRune: "Image de la rune"
+
+input:
+  update: "Mettre à jour"
+  create: "Créer"
+  delete: "Supprimer"
+  save: "Sauvegarder"
+  add: "Ajouter"
+
+form:
+  name: "Nom"
+  description: "Description"
+  image: "Image"
+  color: "Couleur"
+
+create_secondary_rune: "Créer une rune secondaire"
+
+admin:
+  generate_champ: "Entité champion généré"
+  champion: "Gestion des champions"
+  primary: "Gestion des runes"
+
+generate_champ:
+  nb_generate: "Nombre de champion généré"
+  nb_validate: "Nombre de champion validé"
+  nb_refuse: "Nombre de champion refusé"
+  moyenne: "Moyenne de champion généré par utilisateur"
+
+champion:
+  nb_generate: "Nombre de champion"
+
+rune:
+  nb_generate_primary: "Nombre de rune primaire généré"
+  nb_generate_secondary: "Nombre de rune secondaire généré"

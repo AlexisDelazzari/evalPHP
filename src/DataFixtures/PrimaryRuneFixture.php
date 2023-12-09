@@ -15,28 +15,33 @@ class PrimaryRuneFixture extends Fixture
         $primaryRunes = [
             [
                 'name' => 'Precision',
-                'description' => 'Augmente les dégâts d\'attaque et la vitesse d\'attaque',
-                'image' => 'fixturePicture/PrimaryRunes/Precision.png'
+                'description' => 'descPrecision',
+                'image' => 'fixturePicture/PrimaryRunes/Precision.png',
+                'color' => '#d59535'
             ],
             [
                 'name' => 'Domination',
-                'description' => 'Augmente les dégâts des capacités et la pénétration magique',
-                'image' => 'fixturePicture/PrimaryRunes/Domination.png'
+                'description' => 'descDomination',
+                'image' => 'fixturePicture/PrimaryRunes/Domination.png',
+                'color' => '#ee2352'
             ],
             [
                 'name' => 'Sorcery',
-                'description' => 'Augmente la puissance des capacités et la vitesse de déplacement',
-                'image' => 'fixturePicture/PrimaryRunes/Sorcery.png'
+                'description' => 'descSorcery',
+                'image' => 'fixturePicture/PrimaryRunes/Sorcery.png',
+                'color' => '#3ec7fa'
             ],
             [
                 'name' => 'Resolve',
-                'description' => 'Augmente la résistance et la durabilité',
-                'image' => 'fixturePicture/PrimaryRunes/Resolve.png'
+                'description' => 'descResolve',
+                'image' => 'fixturePicture/PrimaryRunes/Resolve.png',
+                'color' => '#23dd46'
             ],
             [
                 'name' => 'Inspiration',
-                'description' => 'Augmente la créativité et l\'utilité',
-                'image' => 'fixturePicture/PrimaryRunes/Inspiration.png'
+                'description' => 'descInspiration',
+                'image' => 'fixturePicture/PrimaryRunes/Inspiration.png',
+                'color' => '#2de1ec'
             ]
         ];
 
@@ -45,6 +50,7 @@ class PrimaryRuneFixture extends Fixture
             $primaryRuneEntity->setName($primaryRune['name']);
             $primaryRuneEntity->setDescription($primaryRune['description']);
             $primaryRuneEntity->setImage($primaryRune['image']);
+            $primaryRuneEntity->setColor($primaryRune['color']);
             $manager->persist($primaryRuneEntity);
             $this->addReference(self::PRIMARY_RUNE_REFERENCE . '_' . $key, $primaryRuneEntity);
         }

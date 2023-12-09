@@ -21,28 +21,23 @@ class SecondaryRuneRepository extends ServiceEntityRepository
         parent::__construct($registry, SecondaryRune::class);
     }
 
-//    /**
-//     * @return SecondaryRune[] Returns an array of SecondaryRune objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('s')
-//            ->andWhere('s.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('s.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    public function findAllWithPrimaryRune(): array
+    {
+        $queryBuilder = $this->createQueryBuilder('secondaryRune')
+            ->select('secondaryRune', 'primaryRune')
+            ->join('secondaryRune.primaryRune', 'primaryRune')
+            ->orderBy('primaryRune.name', 'ASC')
+            ->getQuery();
 
-//    public function findOneBySomeField($value): ?SecondaryRune
-//    {
-//        return $this->createQueryBuilder('s')
-//            ->andWhere('s.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+        return $queryBuilder->getResult();
+    }
+
+    public function countSecondaryRunes(): int
+    {
+        $queryBuilder = $this->createQueryBuilder('secondaryRune')
+            ->select('COUNT(secondaryRune)')
+            ->getQuery();
+
+        return $queryBuilder->getSingleScalarResult();
+    }
 }

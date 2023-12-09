@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Enum\GeneratedChampionStatus;
 use App\Repository\GeneratedChampionRepository;
 use Doctrine\Common\Annotations\Annotation\Enum;
 use Doctrine\ORM\Mapping as ORM;
@@ -16,7 +17,7 @@ class GeneratedChampion
     private ?int $id = null;
 
     #[ORM\Column]
-    private Enum $status;
+    private GeneratedChampionStatus $status;
 
     #[ORM\ManyToOne(inversedBy: 'generatedChampions')]
     private Champion $champion;
@@ -47,12 +48,12 @@ class GeneratedChampion
     private RandomName $randomName;
 
 
-    public function getStatus(): Enum
+    public function getStatus(): GeneratedChampionStatus
     {
         return $this->status;
     }
 
-    public function setStatus(Enum $status): GeneratedChampion
+    public function setStatus(GeneratedChampionStatus $status): GeneratedChampion
     {
         $this->status = $status;
         return $this;

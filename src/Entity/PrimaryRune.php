@@ -23,6 +23,9 @@ class PrimaryRune
     #[ORM\Column]
     private string $image;
 
+    #[ORM\Column]
+    private string $color;
+
     #[ORM\OneToMany(mappedBy: 'primaryRune',targetEntity: SecondaryRune::class)]
     private Collection $secondaryRunes;
 
@@ -64,14 +67,28 @@ class PrimaryRune
         return $this;
     }
 
-    public function getSecondaryRunes(): array
+    /**
+     * @return Collection|SecondaryRune[]
+     */
+    public function getSecondaryRunes(): Collection
     {
         return $this->secondaryRunes;
     }
 
-    public function setSecondaryRunes(array $secondaryRunes): PrimaryRune
+    public function addSecondaryRune(SecondaryRune $secondaryRune): PrimaryRune
     {
-        $this->secondaryRunes = $secondaryRunes;
+        $this->secondaryRunes[] = $secondaryRune;
+        return $this;
+    }
+
+    public function getColor(): string
+    {
+        return $this->color;
+    }
+
+    public function setColor(string $color): PrimaryRune
+    {
+        $this->color = $color;
         return $this;
     }
 }

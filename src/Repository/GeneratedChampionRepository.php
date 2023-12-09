@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\GeneratedChampion;
+use App\Enum\GeneratedChampionStatus;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -21,28 +22,24 @@ class GeneratedChampionRepository extends ServiceEntityRepository
         parent::__construct($registry, GeneratedChampion::class);
     }
 
-//    /**
-//     * @return GeneratedChampion[] Returns an array of GeneratedChampion objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('g')
-//            ->andWhere('g.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('g.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    public function countGeneratedChampions(): int
+    {
+        $queryBuilder = $this->createQueryBuilder('generatedChampion')
+            ->select('COUNT(generatedChampion)')
+            ->getQuery();
 
-//    public function findOneBySomeField($value): ?GeneratedChampion
-//    {
-//        return $this->createQueryBuilder('g')
-//            ->andWhere('g.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+        return $queryBuilder->getSingleScalarResult();
+    }
+
+    public function countGeneratedChampionsValided(GeneratedChampionStatus $status): int
+    {
+        $queryBuilder = $this->createQueryBuilder('generatedChampion')
+            ->select('COUNT(generatedChampion)')
+            ->where('generatedChampion.status = :status')
+            ->setParameter('status', $status)
+            ->getQuery();
+
+        return $queryBuilder->getSingleScalarResult();
+    }
+
 }

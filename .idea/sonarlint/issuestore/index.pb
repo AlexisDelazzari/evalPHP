@@ -30,8 +30,6 @@ U
 %src/Repository/ChampionRepository.php,a\e\ae1d3a31230c9027b77798f7c8a3ae3136b4d081
 J
 src/Entity/Commentaire.php,2\3\237b02d0deb563d7832f745a6283cc5b44c021cd
-T
-$migrations/Version20231201073050.php,e\0\e021f630c9d2c41ed0d045cedcc7024ecff8c3b6
 M
 config/packages/security.yaml,c\5\c5f941b4d4e9404f23935164fabdd261abb68e93
 Q
@@ -48,8 +46,6 @@ M
 templates/app/index.html.twig,3\a\3a6badd3749ff54e4daf26472243b44d54ced18e
 U
 %src/Controller/ChampionController.php,d\7\d768a9bd31debe4e6ca28b7b579783d9f7f2c314
-T
-$migrations/Version20231201175857.php,8\5\85dbb99522d15ccff3b023d87fc261caa6d292d7
 R
 "templates/champion/index.html.twig,2\1\21b3cc77108a7e843f85c17ccffea4b5a3f6133d
 O
@@ -86,25 +82,19 @@ L
 translations/messages.en.yml,0\5\059f10e4144ff814f2b55ce77e1a85f1ffa68805
 L
 translations/messages.fr.yml,b\d\bd2114309923b404768ecd66f359fbac0ca32240
-E
-src/Entity/RandomName,6\5\655b261533fee76b1a6dcabf06245fe62e2f17ed
 I
 src/Entity/RandomName.php,3\e\3e251b4d98972606a1ac4910abeb7d7997a1d277
-T
-$migrations/Version20231206181850.php,c\6\c62284717bc6c82fe03742ea9d36bb8256fe6b07
 W
 'src/DataFixtures/PrimaryRuneFixture.php,b\5\b5854cd9fb3de132b2b11608dae60c2b8d1c4ed6
-T
-$migrations/Version20231206183452.php,c\b\cb8081cb484ac71cb9bc47d2c7d53bd7cee90ade
 E
 migrations/.gitignore,1\1\111bf7805d071b25ec214d0a3fa2c7ff9afea5c4
-T
-$migrations/Version20231206183626.php,e\4\e4bfa3f5c5fe8f06c8886af476ad27bee3384feb
 4
 .env,3\c\3c84dcdc6bbe3d7817c49dcdc327b926fea1808a
-T
-$migrations/Version20231206183745.php,f\7\f740d62bef98f7fc13b736768fade918e5042d42
 Y
 )src/DataFixtures/SecondaryRuneFixture.php,1\7\17da879706749ab6966883d0953833d9d95c50a7
 T
 $migrations/Version20231206194952.php,a\1\a138cf076bc71623384b0a0f92e3991b0d006aa7
+X
+(templates/secondary_rune/index.html.twig,7\4\74da1f0e4f34c480456ecb78dd93ab54a93982f3
+Z
+*src/Controller/SecondaryRuneController.php,3\7\373ba684e78fd2eeb976d79f7e11e3f72d7f7353
