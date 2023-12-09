@@ -1,20 +1,98 @@
 {% extends 'base.html.twig' %}
-
-{% block title %}Hello ApplicationController!{% endblock %}
-
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+    <div class="container">
+        <div id="container">
+            <div class="image-container" onmouseover="zoomIn(this)" onmouseout="zoomOut(this)">
+                <a href="{{ path('app_home') }}" id="image1" class="image-link">
+                    <img src="{{ asset('images/home/jeu.png') }}" alt="Image 1">
+                    <p class="image-text">LOL CHOICE</p>
+                </a>
+            </div>
+            <div class="image-container rotated" onmouseover="zoomIn(this)" onmouseout="zoomOut(this)">
+                <a href="{{ path('app_admin') }}" id="image2" class="image-link">
+                    <img src="{{ asset('images/home/PrimaryRune.jpg') }}" alt="Image 2">
+                    <p class="image-text">ADMIN</p>
+                </a>
+            </div>
+        </div>
+    </div>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden; /* Pour éviter les barres de défilement */
+        }
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/wamp642/www/eval/src/Controller/ApplicationController.php'|file_link(0) }}">src/Controller/ApplicationController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/wamp642/www/eval/templates/application/index.html.twig'|file_link(0) }}">templates/application/index.html.twig</a></code></li>
-    </ul>
-</div>
+        .container {
+            height: 100vh; /* 100% de la hauteur de la vue */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden; /* Pour éviter les barres de défilement */
+        }
+
+        #container {
+            width: 200%; /* Utilisez une largeur plus grande pour couvrir toute la page */
+            display: flex;
+            justify-content: space-between;
+            transform: rotate(-2deg); /* Ajustez l'angle de rotation selon vos besoins */
+        }
+
+        .image-container {
+            position: relative;
+            overflow: hidden;
+            width: 50%;
+            height: 100%;
+        }
+
+        .rotated {
+            transform: rotate(4deg); /* Ajustez l'angle de rotation selon vos besoins */
+        }
+
+        .image-link {
+            display: block;
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .image-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            margin: 0;
+        }
+
+        .image-container img {
+            width: 100%;
+            height: 100%;
+            filter: grayscale(100%);
+            transition: transform 0.3s, filter 0.3s;
+        }
+
+        .zoomed {
+            transform: scale(1.2);
+            filter: grayscale(0%);
+        }
+    </style>
+
+    <script>
+        function zoomIn(element) {
+            const img = element.querySelector('img');
+            img.classList.add('zoomed');
+            img.style.filter = 'grayscale(0%)';
+        }
+
+        function zoomOut(element) {
+            const img = element.querySelector('img');
+            img.classList.remove('zoomed');
+            img.style.filter = 'grayscale(100%)';
+        }
+    </script>
 {% endblock %}

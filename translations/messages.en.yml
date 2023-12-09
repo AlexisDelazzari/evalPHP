@@ -99,7 +99,7 @@ generate_champ:
   nb_generate: "Number of generated champions"
   nb_validate: "Number of validated champions"
   nb_refuse: "Number of refused champions"
-  moyenne: "Average number of champions generated per user"
+  moyenne: "Average number of champions generated validated per user"
 
 champion:
   nb_generate: "Number of champions generated"
