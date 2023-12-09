@@ -111,14 +111,14 @@ rune:
   nb_generate_secondary: "Nombre de rune secondaire généré"
 
 access_denied:
-  title: Accès refusé
-  heading: Accès refusé !
-  message: Vous n'avez pas accès à cette page.
-  reserved: Cette page est réservée aux modérateurs du site.
-  home_link: Retour à la Page d'Accueil
+  title: "Accès refusé"
+  heading: "Accès refusé !"
+  message: "Vous n'avez pas accès à cette page."
+  reserved: "Cette page est réservée aux modérateurs du site."
+  home_link: "Retour à la Page d'Accueil"
 
 route_not_found:
-  title: Page non trouvée
-  heading: Page non trouvée !
-  message: Désolé, la page que vous recherchez est introuvable.
-  back: Retour à la Page d'Accueil
+  title: "Page non trouvée"
+  heading: "Page non trouvée !"
+  message: "Désolé, la page que vous recherchez est introuvable."
+  back: "Retour à la Page d'Accueil"
