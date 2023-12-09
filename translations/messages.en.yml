@@ -114,3 +114,12 @@ access_denied:
   message: You do not have access to this page.
   reserved: This page is reserved for site moderators.
   home_link: Back to Home Page
+
+# translations/messages.en.yaml
+
+route_not_found:
+  title: Page Not Found
+  heading: Page Not Found!
+  message: Sorry, the page you are looking for could not be found.
+  back: Back to Home Page
+

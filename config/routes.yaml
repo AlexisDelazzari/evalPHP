@@ -1,3 +1,8 @@
 controllers:
     resource: ../src/Controller/
     type: attribute
+
+
+error_route_not_found:
+    path: /error/route-not-found
+    controller: 'App\Controller\ErrorController::routeNotFound'
