@@ -7,7 +7,6 @@ Bienvenue dans le League of Legends Manager, une plateforme web innovante dével
 1. [Description du Projet](#description-du-projet)
 2. [Fonctionnalités Principales](#fonctionnalités-principales)
 3. [Utilisation](#utilisation)
-4. [Captures d'Écran](#captures-décran)
 
 
 ## Description du Projet
@@ -36,11 +35,7 @@ Le site est disponible en plusieurs langues, avec un système de traduction comp
 
 Une authentification robuste assure la sécurité des comptes utilisateurs, avec une protection de route et des pages personnalisées pour une expérience utilisateur fluide.
 
-## Installation
-
-Pour installer le League of Legends Manager sur votre machine locale, suivez les instructions détaillées dans le fichier [INSTALLATION.md](INSTALLATION.md).
-
-## Utilisation
+##  Utilisation
 
 Pour utiliser l'application, vous disposer de deux options :
 
