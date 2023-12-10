@@ -13,10 +13,9 @@ class ChampionController extends AbstractController
     #[Route('/champion', name: 'app_champion')]
     public function index(EntityManagerInterface $entityManager): Response
     {
-        $champion = $entityManager->getRepository(Champion::class)->findAll();
+        $champions = $entityManager->getRepository(Champion::class)->findAll();
         return $this->render('champion/index.html.twig', [
-            'controller_name' => 'ChampionController',
-            'champion' => $champion
+            'champions' => $champions
         ]);
     }
 }

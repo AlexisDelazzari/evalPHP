@@ -426,7 +426,7 @@ class ChampionFixture extends Fixture
             [
                 'name' => 'Nunu & Willump',
                 'description' => 'champion.jungle',
-                'image' => 'fixturePicture/Champions/NunuWillump.png'
+                'image' => 'fixturePicture/Champions/Nunu.png'
             ],
             [
                 'name' => 'Olaf',
@@ -702,11 +702,6 @@ class ChampionFixture extends Fixture
                 'name' => 'Warwick',
                 'description' => 'champion.jungle',
                 'image' => 'fixturePicture/Champions/Warwick.png'
-            ],
-            [
-                'name' => 'Wukong',
-                'description' => 'champion.top',
-                'image' => 'fixturePicture/Champions/Wukong.png'
             ],
             [
                 'name' => 'Xayah',

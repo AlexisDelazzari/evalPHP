@@ -1,20 +1,99 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ChampionController!{% endblock %}
+{% block title %}Hello SecondaryRuneController!{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+<div>
+    <form class="form-inline" method="get" action="">
+        <div class="d-flex justify-content-between align-items-center w-100">
+            <a href="?_locale=fr" class="float-left" onclick="this.submit(); return false;">
+                <img class="mr-2 img-fluid" src="{{ asset('images/flags/france.png') }}" alt="French Flag" style="max-width: 100px;">
+            </a>
+            <a href="{{ path('app_admin') }}" class="btn btn-outline-danger">{{ 'Retour'|trans }}</a>
+            <a href="{{ path('app_primary_rune_create')}}" class="btn btn-outline-success mr-2" >{{ 'input.create'|trans }}</a>
+            <a href="?_locale=en" class="float-right" onclick="this.submit(); return false;">
+                <img class="img-fluid" src="{{ asset('images/flags/anglais.png') }}" alt="English Flag" style="max-width: 100px;">
+            </a>
+        </div>
+    </form>
+    {% for flashMessage in app.flashes('success') %}
+        <div class="alert alert-success" role="alert">
+            {{ flashMessage }}
+        </div>
+    {% endfor %}
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/wamp642/www/eval/src/Controller/ChampionController.php'|file_link(0) }}">src/Controller/ChampionController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/wamp642/www/eval/templates/champion/index.html.twig'|file_link(0) }}">templates/champion/index.html.twig</a></code></li>
-    </ul>
+    {% for flashMessage in app.flashes('danger') %}
+        <div class="alert alert-danger" role="alert">
+            {{ flashMessage }}
+        </div>
+    {% endfor %}
+    <div class="container mt-4">
+        <div class="mb-3">
+            <label for="name">Rechercher par nom :</label>
+            <input type="text" class="form-control" id="name">
+        </div>
+        <div class="mb-3">
+            <label for="description">Filtrer par type :</label>
+            <select class="form-control" id="description">
+                <option value="">Tous</option>
+                <option value="champion.top">Top</option>
+                <option value="champion.mid">Mid</option>
+                <option value="champions.jgl">Jungle</option>
+                <option value="champions.adc">ADC</option>
+                <option value="champion.support">Support</option>
+            </select>
+        </div>
+
+        <table class="table table-bordered table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th class="text-white">Nom</th>
+                    <th class="text-white">Type</th>
+                    <th class="text-white">Image</th>
+                </tr>
+            </thead>
+            <tbody id="championsTableBody">
+                {% for champion in champions %}
+                    <tr>
+                        <td class="text-white">{{ champion.name }}</td>
+                        <td class="text-white">{{ champion.description }}</td>
+                        <td style="text-align: center; vertical-align: middle;">
+                            <img src="{{ champion.image }}" alt="{{ champion.name }}" style="max-width: 50px;"></td>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#name, #description').on('input change', function () {
+                filterChampions();
+            });
+
+            function filterChampions() {
+                var nameFilter = $('#name').val().toLowerCase();
+                var descriptionFilter = $('#description').val().toLowerCase();
+
+                $('#championsTableBody tr').each(function () {
+                    var championName = $(this).find('td:eq(0)').text().toLowerCase();
+                    var championDescription = $(this).find('td:eq(1)').text().toLowerCase();
+
+                    if ((nameFilter === '' || championName.includes(nameFilter)) &&
+                        (descriptionFilter === '' || championDescription === descriptionFilter)) {
+                        $(this).show();
+                    } else {
+                        $(this).hide();
+                    }
+                });
+            }
+        });
+    </script>
+
+
+
 </div>
 {% endblock %}

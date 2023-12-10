@@ -37,6 +37,11 @@ Une authentification robuste assure la sécurité des comptes utilisateurs, avec
 
 ##  Utilisation
 
+veuillez suivre les étapes suivantes pour utiliser l'application :
+
+1. Téléchargez le projet en cliquant sur le bouton vert `Code` en haut à droite de la page, puis en cliquant sur `Download ZIP`.
+2. Décompressez le fichier ZIP dans le dossier www de votre serveur local (wamp, xampp, etc.) pour l'exemple le dossier utilisé sera eval.
+
 Pour utiliser l'application, vous disposer de deux options :
 
 1. Vous pouvez vous connecter avec un compte administrateur existant, en utilisant les identifiants suivants :
@@ -50,7 +55,26 @@ Pour utiliser l'application, vous disposer de deux options :
     - **Mot de passe** : root
 
 Avec ces comptes, vous pouvez explorer les fonctionnalités de l'application, créer des champions, les sauvegarder, et les partager avec la communauté.
+Vous aller devoir également créer une base de données locale pour pouvoir utiliser l'application. Pour cela, vous pouvez suivre les étapes suivantes :
 
+1. Ouvrez le fichier `.env.local` et modifiez la ligne suivante :
+
+    ```
+    DATABASE_URL=mysql://root:root@127.0.0.1:3306/evalphp?serverVersion=8
+    ```
+    Remplacez `root:root` par vos identifiants de connexion à votre base de données locale.
+
+2. Ouvrez un terminal et exécutez les commandes suivantes :
+
+    ```
+    composer install
+    php bin/console doctrine:database:create
+    php bin/console doctrine:migrations:migrate
+    php bin/console doctrine:fixtures:load
+    ```
+    La première commande va installer les dépendances du projet, la deuxième va créer la base de données, la troisième va créer les tables de la base de données, et la dernière va insérer des données de test dans la base de données.
+3. Vous pouvez maintenant lancer l'application via wamp par exemple.
+* Vous pouvez maintenant accéder à l'application en ouvrant votre navigateur et en entrant l'adresse suivante : `http://localhost/eval/public/login`
 ---
 
 © 2023 League of Legends Manager. Tous droits réservés.
