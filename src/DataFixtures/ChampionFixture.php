@@ -495,7 +495,7 @@ class ChampionFixture extends Fixture
             ],
             [
                 'name' => 'Riven',
-                'description' => 'chanpion.top',
+                'description' => 'champion.top',
                 'image' => 'fixturePicture/Champions/Riven.png'
             ],
             [

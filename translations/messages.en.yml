@@ -103,6 +103,12 @@ generate_champ:
 
 champion:
   nb_generate: "Number of champions generated"
+  mid: "Mid lane"
+  top: "Top lane"
+  jungle: "Jungle"
+  adc: "Bot lane"
+  support: "Support"
+
 
 rune:
   nb_generate_primary: "Number of primary runes generated"

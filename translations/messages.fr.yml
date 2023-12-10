@@ -105,6 +105,11 @@ generate_champ:
 
 champion:
   nb_generate: "Nombre de champion"
+  adc: "Voie du bas"
+  mid: "Voie du milieu"
+  top: "Voie du haut"
+  jungle: "Jungle"
+  support: "Support"
 
 rune:
   nb_generate_primary: "Nombre de rune primaire généré"
@@ -122,3 +127,4 @@ route_not_found:
   heading: "Page non trouvée !"
   message: "Désolé, la page que vous recherchez est introuvable."
   back: "Retour à la Page d'Accueil"
+

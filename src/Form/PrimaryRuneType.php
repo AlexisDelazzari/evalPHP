@@ -52,7 +52,6 @@ class PrimaryRuneType extends AbstractType
                     'style' => 'width: 50%; text-align: center;',
                 ],
             ])
-
         ;
     }
 

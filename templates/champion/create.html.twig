@@ -1,15 +1,36 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Article creation</h1>
 
-    {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <button class=\"btn\">Create</button>
-    {{ form_end(form) }}
+<form class="form-inline" method="get" action="">
+    <div class="d-flex justify-content-between align-items-center w-100">
+        <a href="?_locale=fr" class="float-left" onclick="this.submit(); return false;">
+            <img class="mr-2 img-fluid" src="{{ asset('images/flags/france.png') }}" alt="French Flag" style="max-width: 100px;">
+        </a>
+        <a href="{{ path('app_secondary_rune') }}" class="btn btn-outline-danger">{{ 'Retour'|trans }}</a>
+        <a href="?_locale=en" class="float-right" onclick="this.submit(); return false;">
+            <img class="img-fluid" src="{{ asset('images/flags/anglais.png') }}" alt="English Flag" style="max-width: 100px;">
+        </a>
+    </div>
+</form>
 
-    <ul>
-        <li>
-        </li>
-    </ul>
+{{ form_start(form, {'attr': {'class': 'custom-form'}}) }}
+<div class="card mt-3 bg-dark text-white text-center" style="margin-left: 10%; margin-right: 10%; border: 1px solid white; border-radius: 25px;">
+    <div class="card-header text-center"  >
+        <div class="form-group" style="width: 50%; margin-left: 25%;">
+            {{ form_row(form.name, {'attr': {'class': 'form-control'}, 'label_attr': {'class': 'form-label'}}) }}
+        </div>
+        <div class="form-group" style="width: 50%; margin-left: 25%;">
+            {{ form_row(form.description, {'attr': {'class': 'form-control'}, 'label_attr': {'class': 'form-label'}}) }}
+        </div>
+        <div class="form-group" style="width: 50%; margin-left: 25%;">
+            {{ form_row(form.image, {'attr': {'class': 'form-control'}, 'label_attr': {'class': 'form-label'}}) }}
+        </div>
+        <div class="form-group">
+            {{ form_row(form.save, {'label_attr': {'class': 'form-label'}}) }}
+        </div>
+    </div>
+</div>
+{{ form_end(form) }}
+
 {% endblock %}

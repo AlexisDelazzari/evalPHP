@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Champion;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -18,7 +19,7 @@ class ChampionType extends AbstractType
                     'style' => ' text-align: center;',
                 ],
                 'label_attr' => ['class' => 'form-label'],
-                'label' => 'form.championName',
+                'label' => 'form.name',
             ])
 
             ->add('image', null, [
@@ -27,7 +28,7 @@ class ChampionType extends AbstractType
                     'style' => ' text-align: center;',
                 ],
                 'label_attr' => ['class' => 'form-label'],
-                'label' => 'form.championImage',
+                'label' => 'form.image',
             ])
 
             ->add('description', null, [
@@ -36,8 +37,17 @@ class ChampionType extends AbstractType
                     'style' => ' text-align: center;',
                 ],
                 'label_attr' => ['class' => 'form-label'],
-                'label' => 'form.championDescription',
+                'label' => 'form.description',
+            ])
+
+            ->add('save', SubmitType::class, [
+                'label' => 'input.save',
+                'attr' => [
+                    'class' => 'btn btn-primary',
+                    'style' => 'width: 50%; text-align: center;',
+                ],
             ]);
+
     }
 
     public function configureOptions(OptionsResolver $resolver): void

@@ -58,13 +58,15 @@
                 {% for champion in champions %}
                     <tr>
                         <td class="text-white">{{ champion.name }}</td>
-                        <td class="text-white">{{ champion.description }}</td>
+                        <td class="text-white">{{ champion.description | trans }}</td>
                         <td style="text-align: center; vertical-align: middle;">
                             <img src="{{ champion.image }}" alt="{{ champion.name }}" style="max-width: 50px;"></td>
                         </td>
                          <td style="text-align: center; vertical-align: middle;">
-                            <a href="{{ path('app_champion_delete', {'id': champion.id}) }}" class="btn btn-danger">Supprimer</a>
-                        </td>
+                             <a href="{{ path('app_champion_delete', {'id': champion.id}) }}">
+                                 <img src="images/icon/delete.png" alt="Delete" width="30" height="30"/>
+                             </a>
+                         </td>
                     </tr>
                 {% endfor %}
             </tbody>

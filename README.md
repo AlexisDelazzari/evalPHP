@@ -7,6 +7,7 @@ Bienvenue dans le League of Legends Manager, une plateforme web innovante dével
 1. [Description du Projet](#description-du-projet)
 2. [Fonctionnalités Principales](#fonctionnalités-principales)
 3. [Utilisation](#utilisation)
+4. [Améliorations Futures](#améliorations-futures)
 
 
 ## Description du Projet
@@ -74,7 +75,14 @@ Vous aller devoir également créer une base de données locale pour pouvoir uti
     ```
     La première commande va installer les dépendances du projet, la deuxième va créer la base de données, la troisième va créer les tables de la base de données, et la dernière va insérer des données de test dans la base de données.
 3. Vous pouvez maintenant lancer l'application via wamp par exemple.
-* Vous pouvez maintenant accéder à l'application en ouvrant votre navigateur et en entrant l'adresse suivante : `http://localhost/eval/public/login`
+* Vous pouvez maintenant accéder à l'application en ouvrant votre navigateur et en entrant l'adresse suivante : `http://localhost/eval/public/application`
+
+## Améliorations Futures
+
+- Amélioration des formulaire car actuellement on peut mettre un peu n'importe quoi dans les entités.
+- Ajout des améliorations de design.
+- Les traductions ne sont pas toutes bien faites.
+
 ---
 
 © 2023 League of Legends Manager. Tous droits réservés.
