@@ -19,7 +19,7 @@ class GeneratedChampion
     #[ORM\Column]
     private GeneratedChampionStatus $status;
 
-    #[ORM\ManyToOne(inversedBy: 'generatedChampions')]
+    #[ORM\ManyToOne(targetEntity: Champion::class, inversedBy: 'generatedChampions')]
     private Champion $champion;
 
     #[ORM\ManyToOne(inversedBy: 'generatedChampions')]

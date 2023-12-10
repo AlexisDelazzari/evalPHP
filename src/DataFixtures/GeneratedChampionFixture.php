@@ -6,6 +6,7 @@ use App\Enum\GeneratedChampionStatus;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use App\Entity\GeneratedChampion as GeneratedChampionEntity;
+use App\Entity\Champion as ChampionEntity;
 
 class GeneratedChampionFixture extends Fixture
 {
@@ -25,6 +26,8 @@ class GeneratedChampionFixture extends Fixture
         foreach ($generatedChampions as $key => $generatedChampion) {
             $generatedChampionEntity = new GeneratedChampionEntity();
             $generatedChampionEntity->setStatus($generatedChampion['status']);
+            $champion = $manager->getRepository(ChampionEntity::class)->findOneBy(['name' => 'Aatrox']);
+            $generatedChampionEntity->setChampion($champion);
             $manager->persist($generatedChampionEntity);
             $this->addReference(self::GENERATED_CHAMPION_REFERENCE . '_' . $key, $generatedChampionEntity);
         }

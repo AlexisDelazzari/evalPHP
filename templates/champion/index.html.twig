@@ -11,7 +11,7 @@
                 <img class="mr-2 img-fluid" src="{{ asset('images/flags/france.png') }}" alt="French Flag" style="max-width: 100px;">
             </a>
             <a href="{{ path('app_admin') }}" class="btn btn-outline-danger">{{ 'Retour'|trans }}</a>
-            <a href="{{ path('app_primary_rune_create')}}" class="btn btn-outline-success mr-2" >{{ 'input.create'|trans }}</a>
+            <a href="{{ path('app_champion_add')}}" class="btn btn-outline-success mr-2" >{{ 'input.create'|trans }}</a>
             <a href="?_locale=en" class="float-right" onclick="this.submit(); return false;">
                 <img class="img-fluid" src="{{ asset('images/flags/anglais.png') }}" alt="English Flag" style="max-width: 100px;">
             </a>
@@ -51,6 +51,7 @@
                     <th class="text-white">Nom</th>
                     <th class="text-white">Type</th>
                     <th class="text-white">Image</th>
+                    <th class="text-white" style="width: 100px;">Actions</th>
                 </tr>
             </thead>
             <tbody id="championsTableBody">
@@ -60,6 +61,9 @@
                         <td class="text-white">{{ champion.description }}</td>
                         <td style="text-align: center; vertical-align: middle;">
                             <img src="{{ champion.image }}" alt="{{ champion.name }}" style="max-width: 50px;"></td>
+                        </td>
+                         <td style="text-align: center; vertical-align: middle;">
+                            <a href="{{ path('app_champion_delete', {'id': champion.id}) }}" class="btn btn-danger">Supprimer</a>
                         </td>
                     </tr>
                 {% endfor %}

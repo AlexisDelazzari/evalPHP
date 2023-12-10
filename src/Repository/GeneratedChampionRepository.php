@@ -42,4 +42,15 @@ class GeneratedChampionRepository extends ServiceEntityRepository
         return $queryBuilder->getSingleScalarResult();
     }
 
+    public function countGeneratedChampionsByChampion(int $id): int
+    {
+        $queryBuilder = $this->createQueryBuilder('generatedChampion')
+            ->select('COUNT(generatedChampion)')
+            ->where('generatedChampion.champion = :id')
+            ->setParameter('id', $id)
+            ->getQuery();
+
+        return $queryBuilder->getSingleScalarResult();
+    }
+
 }

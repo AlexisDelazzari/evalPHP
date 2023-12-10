@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\ChampionRepository;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ChampionRepository::class)]
@@ -21,6 +22,9 @@ class Champion
 
     #[ORM\Column]
     private string $image;
+
+    #[ORM\OneToMany(mappedBy: 'champion',targetEntity: GeneratedChampion::class)]
+    private Collection $generatedChampions;
 
     public function getId(): ?int
     {
@@ -57,6 +61,17 @@ class Champion
     public function setImage(string $image): Champion
     {
         $this->image = $image;
+        return $this;
+    }
+
+    public function getGeneratedChampions(): Collection
+    {
+        return $this->generatedChampions;
+    }
+
+    public function setGeneratedChampions(Collection $generatedChampions): Champion
+    {
+        $this->generatedChampions = $generatedChampions;
         return $this;
     }
 }
