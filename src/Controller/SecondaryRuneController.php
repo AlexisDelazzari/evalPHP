@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 
+use App\Entity\GeneratedChampion;
 use App\Form\SecondaryRuneType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -57,6 +58,12 @@ class SecondaryRuneController extends AbstractController
     #[Route('/secondary/rune/delete/{id}', name: 'app_secondary_rune_delete')]
     public function delete(int $id, EntityManagerInterface $entityManager): Response
     {
+        $generatedChampions = $entityManager->getRepository(GeneratedChampion::class)->findGeneratedChampionWithSecondaryRune($id);
+        if ($generatedChampions) {
+            $this->addFlash('error', 'Impossible de supprimer cette rune, elle est utilisée par un champion généré');
+            return $this->redirectToRoute('app_secondary_rune');
+        }
+
         $secondaryRune = $entityManager->getRepository(SecondaryRune::class)->find($id);
         $entityManager->remove($secondaryRune);
         $entityManager->flush();

@@ -34,9 +34,10 @@ class GeneratedChampion
     #[ORM\ManyToOne(inversedBy: 'generatedChampions')]
     private SecondaryRune $secondaryRune2;
 
-    #[ORM\ManyToMany(inversedBy: 'generatedChampions',targetEntity: Item::class)]
+    #[ORM\ManyToMany(targetEntity: Item::class, inversedBy: 'generatedChampions')]
     #[ORM\JoinTable(name: 'generated_champion_item')]
-    private array $items;
+    private Collection $items;
+
 
     #[ORM\ManyToOne(inversedBy: 'generatedChampions')]
     private User $user;
@@ -130,14 +131,14 @@ class GeneratedChampion
         return $this;
     }
 
-    public function getItems(): array
+    public function getItem(): Collection
     {
         return $this->items;
     }
 
-    public function setItems(array $items): GeneratedChampion
+    public function setItem(Collection $item): GeneratedChampion
     {
-        $this->items = $items;
+        $this->items = $item;
         return $this;
     }
 

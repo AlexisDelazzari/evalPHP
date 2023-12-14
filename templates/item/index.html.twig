@@ -1,20 +1,58 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ItemController!{% endblock %}
-
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+<div>
+    <form class="form-inline" method="get" action="">
+        <div class="d-flex justify-content-between align-items-center w-100">
+            <a href="?_locale=fr" class="float-left" onclick="this.submit(); return false;">
+                <img class="mr-2 img-fluid" src="{{ asset('images/flags/france.png') }}" alt="French Flag" style="max-width: 100px;">
+            </a>
+            <a href="{{ path('app_admin') }}" class="btn btn-outline-danger">{{ 'Retour'|trans }}</a>
+            <a href="{{ path('app_champion_add')}}" class="btn btn-outline-success mr-2" >{{ 'input.create'|trans }}</a>
+            <a href="?_locale=en" class="float-right" onclick="this.submit(); return false;">
+                <img class="img-fluid" src="{{ asset('images/flags/anglais.png') }}" alt="English Flag" style="max-width: 100px;">
+            </a>
+        </div>
+    </form>
+    {% for flashMessage in app.flashes('success') %}
+        <div class="alert alert-success" role="alert">
+            {{ flashMessage }}
+        </div>
+    {% endfor %}
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/wamp642/www/eval/src/Controller/ItemController.php'|file_link(0) }}">src/Controller/ItemController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/wamp642/www/eval/templates/item/index.html.twig'|file_link(0) }}">templates/item/index.html.twig</a></code></li>
-    </ul>
+    {% for flashMessage in app.flashes('danger') %}
+        <div class="alert alert-danger" role="alert">
+            {{ flashMessage }}
+        </div>
+    {% endfor %}
+    <div class="container mt-4">
+        <table class="table table-bordered table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th class="text-white">Image</th>
+                    <th class="text-white"> {{ 'input.name'|trans }}</th>
+                    <th class="text-white"> {{ 'input.price'|trans }}</th>
+                    <th class="text-white"> {{ 'input.isBotte'|trans }}</th>
+                    <th class="text-white"> {{ 'input.isMythic'|trans }}</th>
+                    <th class="text-white" style="width: 100px;">Actions</th>
+                </tr>
+            </thead>
+            <tbody >
+                {% for item in items %}
+                    <tr>
+                        <td class="text-white"><img src="{{ item.image }}" style="max-width: 100px;"></td>
+                        <td class="text-white">{{ item.name }}</td>
+                        <td class="text-white">{{ item.price }}</td>
+                        <td class="text-white">{{ item.isBotte ? 'Oui' : 'Non' }}</td>
+                        <td class="text-white">{{ item.isMythic ? 'Oui' : 'Non' }}</td>
+                        <td>
+                            <a href="{{ path('app_item_delete', {'id': item.id}) }}" class="btn btn-outline-danger btn-sm">{{ 'input.delete'|trans }}</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 </div>
 {% endblock %}

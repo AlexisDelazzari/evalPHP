@@ -80,12 +80,25 @@ input:
   delete: "Delete"
   save: "Save"
   add: "Add"
+  name: "Name"
+  admin: "Admin"
+  user: "User"
+  show_list: "Show list Generate Champion"
+  descriptionSummoner: "Description of the summoner spell"
+  price: "Price"
+  isMythic: "Mythic ?"
+  isBotte: "Boots ?"
 
 form:
   name: "Name"
   description: "Description"
   image: "Image"
   color: "Color"
+  username: "Username"
+  email: "Email"
+  password: "Password"
+  isAdmin: "Admin ?"
+
 
 create_secondary_rune: "Create secondary rune"
 imageRune: "Rune image"
@@ -94,6 +107,9 @@ admin:
   generate_champ: "Entity generated champions"
   champion: "Champion management"
   primary: "Rune management"
+  user: "User management"
+  summoner: "Summoner spell management"
+  item: "Item management"
 
 generate_champ:
   nb_generate: "Number of generated champions"
@@ -129,3 +145,45 @@ route_not_found:
   message: Sorry, the page you are looking for could not be found.
   back: Back to Home Page
 
+user:
+  nb_generate: "Number of User"
+  isAdmin: "Number of Admin"
+  isNotAdmin: "Number of User not Admin"
+  moyenne: "Average number of champions generated per user"
+
+summoner:
+  flash: "Flash"
+  teleport: "Teleport"
+  ignite: "Ignite"
+  heal: "Heal"
+  barrier: "Barrier"
+  cleanse: "Cleanse"
+  exhaust: "Exhaust"
+  ghost: "Ghost"
+  smite: "Smite"
+  nb_generate: "Number of generated champions"
+  description:
+    flash: "Teleport your champion a short distance toward your cursor's location."
+    teleport: "After channeling for 4 seconds, teleports your champion to target allied structure, minion, or ward."
+    ignite: "Ignites target enemy champion, dealing 80-505 true damage (depending on champion level) over 5 seconds, grants you vision of the target, and reduces healing effects on them for the duration."
+    heal: "Restores 90-345 Health (depending on champion level) and grants 30% bonus Movement Speed for 1 second to you and target allied champion."
+    barrier: "Shields your champion from 115-455 damage (depending on champion level) for 2 seconds."
+    cleanse: "Removes all disables (excluding Suppression and Airborne) and summoner spell debuffs affecting your champion and lowers the duration of incoming disables by 65% for 3 seconds."
+    exhaust: "Exhausts target enemy champion, reducing their Movement Speed by 30%, and their damage dealt by 40% for 2.5 seconds."
+    ghost: "Your champion gains increased Movement Speed and can move through units for 10 seconds."
+    smite: "Deals 390-1000 true damage (depending on champion level) to target epic, large, or medium monster or enemy minion. Against monsters, additionally restores 70 (+10% of missing Health) Health and 40 Mana over 6 seconds."
+  delete:
+    error: "You can't delete this summoner spell because it's used by a champion."
+    success: "Summoner spell deleted successfully."
+
+filter:
+  name: 'Filter by name'
+  type: 'Filter by type'
+  mail: 'Filter by mail'
+  role: 'Filter by role'
+
+item:
+  nb_generate: "Number of generated items"
+  nb_mythic: "Number of mythic items"
+  nb_legendary: "Number of legendary items"
+  nb_botte: "Number of boots"

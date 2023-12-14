@@ -53,4 +53,57 @@ class GeneratedChampionRepository extends ServiceEntityRepository
         return $queryBuilder->getSingleScalarResult();
     }
 
+    public function averageChampionsGeneratedPerUser(): int
+    {
+        $queryBuilder = $this->createQueryBuilder('generatedChampion')
+            ->select('COUNT(generatedChampion)')
+            ->groupBy('generatedChampion.user')
+            ->getQuery();
+
+        $result = $queryBuilder->getResult();
+        $nbUsers = count($result);
+        $nbChampions = 0;
+        foreach ($result as $value) {
+            $nbChampions += $value['1'];
+        }
+        if ($nbUsers == 0) {
+            return 0;
+        }
+        return $nbChampions / $nbUsers;
+    }
+
+    public function findGeneratedChampionWithSummoner(int $id): array
+    {
+        $queryBuilder = $this->createQueryBuilder('generatedChampion')
+            ->select('generatedChampion')
+            ->where('generatedChampion.summoner1 = :id')
+            ->orWhere('generatedChampion.summoner2 = :id')
+            ->setParameter('id', $id)
+            ->getQuery();
+
+        return $queryBuilder->getResult();
+    }
+
+    public function findGeneratedChampionWithSecondaryRune(int $id): array
+    {
+        $queryBuilder = $this->createQueryBuilder('generatedChampion')
+            ->select('generatedChampion')
+            ->where('generatedChampion.secondaryRune1 = :id')
+            ->orWhere('generatedChampion.secondaryRune2 = :id')
+            ->setParameter('id', $id)
+            ->getQuery();
+
+        return $queryBuilder->getResult();
+    }
+
+    public function findGeneratedChampionWithItem(int $id): array
+    {
+        $queryBuilder = $this->createQueryBuilder('generatedChampion')
+            ->select('generatedChampion')
+            ->where(':id MEMBER OF generatedChampion.items')
+            ->setParameter('id', $id)
+            ->getQuery();
+
+        return $queryBuilder->getResult();
+    }
 }

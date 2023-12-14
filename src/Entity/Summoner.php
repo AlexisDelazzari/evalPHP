@@ -19,11 +19,50 @@ class Summoner
     #[ORM\Column]
     private string $description;
 
-    #[ORM\OneToOne(inversedBy: 'summoner')]
-    private Image $image;
+    #[ORM\Column]
+    private string $image;
 
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function setId(int $id): Summoner
+    {
+        $this->id = $id;
+        return $this;
+    }
+
+    public function getName(): string
+    {
+        return $this->name;
+    }
+
+    public function setName(string $name): Summoner
+    {
+        $this->name = $name;
+        return $this;
+    }
+
+    public function getDescription(): string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(string $description): Summoner
+    {
+        $this->description = $description;
+        return $this;
+    }
+
+    public function getImage(): string
+    {
+        return $this->image;
+    }
+
+    public function setImage(string $image): Summoner
+    {
+        $this->image = $image;
+        return $this;
     }
 }

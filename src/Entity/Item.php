@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\ItemRepository;
 use Doctrine\ORM\Mapping as ORM;
 use phpDocumentor\Reflection\Types\Boolean;
+use Doctrine\Common\Collections\Collection;
 
 #[ORM\Entity(repositoryClass: ItemRepository::class)]
 class Item
@@ -23,14 +24,18 @@ class Item
     #[ORM\Column]
     private int $price;
 
-    #[ORM\ManyToOne(inversedBy: 'items')]
-    private Image $image;
-
-    #[ORM\ManyToMany(targetEntity: GeneratedChampion::class, mappedBy: 'items')]
-    private array $generatedChampions;
+    #[ORM\Column]
+    private string $image;
 
     #[ORM\Column]
-    private Boolean $isBotte;
+    private bool $isBotte;
+
+    #[ORM\Column]
+    private bool $isMythic;
+
+    #[ORM\ManyToMany(targetEntity: GeneratedChampion::class, mappedBy: 'items')]
+    private Collection $items;
+
 
     public function getId(): ?int
     {
@@ -70,25 +75,47 @@ class Item
         return $this;
     }
 
-    public function getImage(): Image
+    public function getImage(): string
     {
         return $this->image;
     }
 
-    public function setImage(Image $image): Item
+    public function setImage(string $image): Item
     {
         $this->image = $image;
         return $this;
     }
 
-    public function getGeneratedChampions(): array
+    public function getIsBotte(): bool
     {
-        return $this->generatedChampions;
+        return $this->isBotte;
     }
 
-    public function setGeneratedChampions(array $generatedChampions): Item
+    public function setIsBotte(bool $isBotte): Item
     {
-        $this->generatedChampions = $generatedChampions;
+        $this->isBotte = $isBotte;
+        return $this;
+    }
+
+    public function getIsMythic(): bool
+    {
+        return $this->isMythic;
+    }
+
+    public function setIsMythic(bool $isMythic): Item
+    {
+        $this->isMythic = $isMythic;
+        return $this;
+    }
+
+    public function getItems(): Collection
+    {
+        return $this->items;
+    }
+
+    public function setItems(Collection $items): Item
+    {
+        $this->items = $items;
         return $this;
     }
 }

@@ -21,28 +21,40 @@ class ItemRepository extends ServiceEntityRepository
         parent::__construct($registry, Item::class);
     }
 
-//    /**
-//     * @return Item[] Returns an array of Item objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('i')
-//            ->andWhere('i.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('i.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    public function countItems(): int
+    {
+        return $this->createQueryBuilder('i')
+            ->select('count(i.id)')
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
+    //count item mytique
+    public function countMythicItems(): int
+    {
+        return $this->createQueryBuilder('i')
+            ->select('count(i.id)')
+            ->where('i.isMythic = 1')
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
 
-//    public function findOneBySomeField($value): ?Item
-//    {
-//        return $this->createQueryBuilder('i')
-//            ->andWhere('i.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+    //count item legendary
+    public function countLegendaryItems(): int
+    {
+        return $this->createQueryBuilder('i')
+            ->select('count(i.id)')
+            ->where('i.isMythic = 0')
+            ->andWhere('i.isBotte = 0')
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
+    //count item botte
+    public function countBotteItems(): int
+    {
+        return $this->createQueryBuilder('i')
+            ->select('count(i.id)')
+            ->where('i.isBotte = 1')
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
 }

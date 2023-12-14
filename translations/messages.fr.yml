@@ -83,12 +83,22 @@ input:
   delete: "Supprimer"
   save: "Sauvegarder"
   add: "Ajouter"
+  name: "Nom"
+  user: "Utilisateur"
+  admin: "Admin"
+  show_list: "Afficher la liste des champions générés"
+  descriptionSummoner: "Description du sort d'invocateur"
+  price: "Prix"
+  isBotte: "Botte ?"
+  isMythic: "Mythique ?"
 
 form:
   name: "Nom"
   description: "Description"
   image: "Image"
   color: "Couleur"
+  username: "Nom d'utilisateur"
+  password: "Mot de passe"
 
 create_secondary_rune: "Créer une rune secondaire"
 
@@ -96,6 +106,9 @@ admin:
   generate_champ: "Entité champion généré"
   champion: "Gestion des champions"
   primary: "Gestion des runes"
+  user: "Gestion des utilisateurs"
+  summoner: "Gestion des sorts d'invocateur"
+  item: "Gestion des objets"
 
 generate_champ:
   nb_generate: "Nombre de champion généré"
@@ -128,3 +141,46 @@ route_not_found:
   message: "Désolé, la page que vous recherchez est introuvable."
   back: "Retour à la Page d'Accueil"
 
+user:
+  nb_generate: "Nombre d'utilisateur"
+  isAdmin: "Nombre d'admin"
+  isNotAdmin: "Nombre d'utilisateur non admin"
+  moyenne: "Moyenne de champion généré par utilisateur"
+
+summoner:
+  flash: "Flash"
+  teleport: "Téléportation"
+  ignite: "Embrasement"
+  barrier: "Barrière"
+  heal: "Soin"
+  cleanse: "Purge"
+  ghost: "Fantôme"
+  exhaust: "Fatigue"
+  smite: "Châtiment"
+  nb_generate: "Nombre de sort d'invocateur généré"
+  description:
+    flash: "Téléporte votre champion dans la direction ciblée."
+    teleport: "Téléporte votre champion vers une tourelle, un sbire ou un objet allié."
+    ignite: "Inflige des dégâts bruts à un champion ennemi."
+    barrier: "Augmente votre bouclier."
+    heal: "Soigne votre champion et le champion allié le plus proche."
+    cleanse: "Supprime tous les effets de contrôle des foules et réduit la durée des nouveaux effets de contrôle des foules de 65% pendant 3 secondes."
+    ghost: "Augmente la vitesse de déplacement de votre champion."
+    exhaust: "Réduit la vitesse de déplacement et les dégâts de votre cible."
+    smite: "Inflige des dégâts bruts à un monstre ou un sbire ennemi, ou soigne votre champion et le champion allié le plus proche."
+  delete:
+    error: "Impossible de supprimer le sort d'invocateur car il est utilisé par un champion."
+    success: "Le sort d'invocateur a été supprimé avec succès."
+
+
+filter:
+  name: 'Filter par nom'
+  type: 'Filter par type'
+  role: 'Filter par rôle'
+  mail: 'Filter par mail'
+
+item:
+  nb_generate: "Nombre d'objet généré"
+  nb_mythic: "Nombre d'objet mythique généré"
+  nb_legendary: "Nombre d'objet légendaire généré"
+  nb_botte: "Nombre de botte généré"

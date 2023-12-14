@@ -82,6 +82,12 @@ Vous aller devoir également créer une base de données locale pour pouvoir uti
 - Amélioration des formulaire car actuellement on peut mettre un peu n'importe quoi dans les entités.
 - Ajout des améliorations de design.
 - Les traductions ne sont pas toutes bien faites.
+- Séparation des fichiers CSS HTML et JS (car la c'est moche dsl).
+- Optimisation du code le controlleur admin est infame tout comme son htlm divisé en component par entity aurait été mieux.
+- Faire un système de pagination pour l'affichage des entites car la on charge comme des sauvages laisse tomber si on a 1000 champions.
+- Ajout d'un mot de passe oublié.
+- Les filtres peuvent être améliorés car les données sont chargées en une fois et ensuite filtrées + les filtres sont écrits en dur dans le code.
+- Traduire les items et les messages d'erreur. + ajout de tous les items. + les items actuel sont faux pas à jour et les images sont pas les bonnes.
 
 ---
 

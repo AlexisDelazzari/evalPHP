@@ -21,28 +21,11 @@ class SummonerRepository extends ServiceEntityRepository
         parent::__construct($registry, Summoner::class);
     }
 
-//    /**
-//     * @return Summoner[] Returns an array of Summoner objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('s')
-//            ->andWhere('s.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('s.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
-
-//    public function findOneBySomeField($value): ?Summoner
-//    {
-//        return $this->createQueryBuilder('s')
-//            ->andWhere('s.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+    public function countSummoners(): int
+    {
+        return $this->createQueryBuilder('s')
+            ->select('count(s.id)')
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
 }

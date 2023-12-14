@@ -1,20 +1,126 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello UserController!{% endblock %}
+{% block title %}Hello SecondaryRuneController!{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+<div>
+    <form class="form-inline" method="get" action="">
+        <div class="d-flex justify-content-between align-items-center w-100">
+            <a href="?_locale=fr" class="float-left" onclick="this.submit(); return false;">
+                <img class="mr-2 img-fluid" src="{{ asset('images/flags/france.png') }}" alt="French Flag" style="max-width: 100px;">
+            </a>
+            <a href="{{ path('app_admin') }}" class="btn btn-outline-danger">{{ 'Retour'|trans }}</a>
+            <a href="{{ path('app_user_add')}}" class="btn btn-outline-success mr-2" >{{ 'input.create'|trans }}</a>
+            <a href="?_locale=en" class="float-right" onclick="this.submit(); return false;">
+                <img class="img-fluid" src="{{ asset('images/flags/anglais.png') }}" alt="English Flag" style="max-width: 100px;">
+            </a>
+        </div>
+    </form>
+    {% for flashMessage in app.flashes('success') %}
+        <div class="alert alert-success" role="alert">
+            {{ flashMessage }}
+        </div>
+    {% endfor %}
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/wamp642/www/eval/src/Controller/UserController.php'|file_link(0) }}">src/Controller/UserController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/wamp642/www/eval/templates/user/index.html.twig'|file_link(0) }}">templates/user/index.html.twig</a></code></li>
-    </ul>
+    {% for flashMessage in app.flashes('danger') %}
+        <div class="alert alert-danger" role="alert">
+            {{ flashMessage }}
+        </div>
+    {% endfor %}
+
+    <div class="container mt-4">
+        <div style="display: flex; justify-content: center;">
+            <div style="width: 50%;" class="mb-3 mr-4">
+                <label for="name">{{'filter.name'|trans}} :</label>
+                <input type="text" class="form-control" id="name">
+            </div>
+            <div style="width: 50%;" class="mb-3 ml-4">
+                <label for="mail">{{'filter.mail'|trans}} :</label>
+                <input type="text" class="form-control" id="mail">
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label for="type">{{'filter.type'|trans}} :</label>
+            <select class="form-control" id="type">
+                <option value="">Tous</option>
+                <option value="admin">{{ 'input.admin'|trans }}</option>
+                <option value="user"> {{ 'input.user'|trans }}</option>
+            </select>
+        </div>
+
+        <table class="table table-bordered table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th class="text-white"> {{ 'input.name'|trans }}</th>
+                    <th class="text-white"> mail </th>
+                    <th class="text-white">Type</th>
+                    <th class="text-white" style="width: 300px;">Actions</th>
+                </tr>
+            </thead>
+
+            <tbody id="usersTableBody">
+                {% for user in users %}
+                    <tr>
+                        <td class="text-white">{{ user.username }}</td>
+                        <td class="text-white">{{ user.email }}</td>
+                        <td class="text-white">
+                            {% for role in user.roles %}
+                                {% if role == 'ROLE_ADMIN' %}
+                                    {{ 'input.admin'|trans }}
+                                {% else %}
+                                    {{ 'input.user'|trans }}
+                                {% endif %}
+                            {% endfor %}
+                        </td>
+                        <td style="display: none;">
+                            {% for role in user.roles %}
+                                {% if role == 'ROLE_ADMIN' %}
+                                    admin
+                                {% endif %}
+                            {% endfor %}
+                        <td class="text-white" style="text-align: center;">
+                            <a href="{{ path('app_user', {'id': user.id}) }}" class="btn btn-outline-success btn-sm">{{ 'input.show_list'|trans }}</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+    console.log('test');
+        $(document).ready(function () {
+            $('#name, #type, #mail').on('input change', function () {
+                filterUser();
+            });
+
+            function filterUser() {
+                var nameFilter = $('#name').val().toLowerCase();
+                var typeFilter = $('#type').val().toLowerCase();
+                var mailFilter = $('#mail').val().toLowerCase();
+
+                $('#usersTableBody tr').each(function () {
+                    var userName = $(this).find('td:eq(0)').text().toLowerCase();
+                    var userMail = $(this).find('td:eq(1)').text().toLowerCase();
+                    var userType = $(this).find('td:eq(3)').text().toLowerCase();
+
+                    userType = userType.replace(/\s/g, '');
+                    userType = userType.replace(/\n/g, '');
+                    userType = userType.replace(/\t/g, '');
+                    userType = userType.replace(/\r/g, '');
+
+                    userType = userType == 'admin' ? 'admin' : 'user';
+
+                    if (userName.indexOf(nameFilter) < 0 || userMail.indexOf(mailFilter) < 0 || userType.indexOf(typeFilter) < 0) {
+                        $(this).hide();
+                    } else {
+                        $(this).show();
+                    }
+                });
+            }
+        });
+    </script>
 </div>
 {% endblock %}

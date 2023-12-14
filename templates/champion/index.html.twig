@@ -30,17 +30,17 @@
     {% endfor %}
     <div class="container mt-4">
         <div class="mb-3">
-            <label for="name">Rechercher par nom :</label>
+            <label for="name">{{ filter.name | trans }}</label>
             <input type="text" class="form-control" id="name">
         </div>
         <div class="mb-3">
-            <label for="description">Filtrer par type :</label>
+            <label for="description">{{ filter.type | trans }}</label>
             <select class="form-control" id="description">
                 <option value="">Tous</option>
                 <option value="champion.top">Top</option>
                 <option value="champion.mid">Mid</option>
-                <option value="champions.jgl">Jungle</option>
-                <option value="champions.adc">ADC</option>
+                <option value="champion.jungle">Jungle</option>
+                <option value="champion.adc">Adc</option>
                 <option value="champion.support">Support</option>
             </select>
         </div>
@@ -48,7 +48,7 @@
         <table class="table table-bordered table-striped">
             <thead class="thead-dark">
                 <tr>
-                    <th class="text-white">Nom</th>
+                    <th class="text-white"> {{ 'input.name'|trans }}</th>
                     <th class="text-white">Type</th>
                     <th class="text-white">Image</th>
                     <th class="text-white" style="width: 100px;">Actions</th>
@@ -59,6 +59,7 @@
                     <tr>
                         <td class="text-white">{{ champion.name }}</td>
                         <td class="text-white">{{ champion.description | trans }}</td>
+                        <td style="display: none;">{{ champion.description }}</td>
                         <td style="text-align: center; vertical-align: middle;">
                             <img src="{{ champion.image }}" alt="{{ champion.name }}" style="max-width: 50px;"></td>
                         </td>
@@ -86,7 +87,7 @@
 
                 $('#championsTableBody tr').each(function () {
                     var championName = $(this).find('td:eq(0)').text().toLowerCase();
-                    var championDescription = $(this).find('td:eq(1)').text().toLowerCase();
+                    var championDescription = $(this).find('td:eq(2)').text().toLowerCase();
 
                     if ((nameFilter === '' || championName.includes(nameFilter)) &&
                         (descriptionFilter === '' || championDescription === descriptionFilter)) {
