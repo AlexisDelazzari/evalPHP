@@ -91,6 +91,7 @@ input:
   price: "Prix"
   isBotte: "Botte ?"
   isMythic: "Mythique ?"
+  bdd: "Réinitialiser la base de données"
 
 form:
   name: "Nom"

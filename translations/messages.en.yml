@@ -88,6 +88,7 @@ input:
   price: "Price"
   isMythic: "Mythic ?"
   isBotte: "Boots ?"
+  bdd: "Reset database"
 
 form:
   name: "Name"

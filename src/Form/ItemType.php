@@ -4,7 +4,10 @@ namespace App\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class ItemType extends AbstractType
@@ -45,20 +48,31 @@ class ItemType extends AbstractType
                 'label' => 'form.image',
             ])
             ->add('isBotte' , CheckboxType::class, [
+                'label' => 'form.isBotte',
+                'compound' => false, // <-- important
+                'required' => false,
                 'attr' => [
                     'class' => 'form-check-input',
-                    'style' => ' text-align: center;',
+                    'style' => 'text-align: center;',
                 ],
                 'label_attr' => ['class' => 'form-check-label'],
-                'label' => 'form.isBotte',
             ])
             ->add('isMythic' , CheckboxType::class, [
+                'compound' => false, // <-- important
+                'label' => 'form.isMythic',
+                'required' => false,
                 'attr' => [
                     'class' => 'form-check-input',
-                    'style' => ' text-align: center;',
+                    'style' => 'text-align: center;',
                 ],
                 'label_attr' => ['class' => 'form-check-label'],
-                'label' => 'form.isMythic',
+            ])
+            ->add('save', SubmitType::class, [
+                'label' => 'input.save',
+                'attr' => [
+                    'class' => 'btn btn-primary',
+                    'style' => 'width: 50%; text-align: center;',
+                ],
             ])
         ;
     }
@@ -69,4 +83,13 @@ class ItemType extends AbstractType
             // Configure your form options here
         ]);
     }
+
+
+
+
+
+
+
+
+
 }

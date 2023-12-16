@@ -43,6 +43,7 @@ class UserType extends AbstractType
                 'label' => 'form.email',
             ])
             ->add('isAdmin', CheckboxType::class, [
+                'compound' => '0',
                 'label' => 'form.isAdmin',
                 'required' => false,
                 'attr' => [
@@ -50,6 +51,7 @@ class UserType extends AbstractType
                     'style' => 'text-align: center;',
                 ],
                 'label_attr' => ['class' => 'form-check-label'],
+
             ])
             ->add('save', SubmitType::class, [
                 'label' => 'input.save',
@@ -58,17 +60,8 @@ class UserType extends AbstractType
                     'style' => 'width: 50%; text-align: center;',
                 ],
             ])
-            ->addEventListener(FormEvents::PRE_SUBMIT, [$this, 'preSubmit'])
         ;
     }
-
-    public function preSubmit(FormEvent $event): void
-    {
-        $data = $event->getData();
-        $data['isAdmin'] = $data['isAdmin'] ? '1' : '0';
-        $event->setData($data);
-    }
-
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
