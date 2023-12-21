@@ -57,4 +57,31 @@ class ItemRepository extends ServiceEntityRepository
             ->getQuery()
             ->getSingleScalarResult();
     }
+
+    public function getRandItems(): \Doctrine\Common\Collections\ArrayCollection
+    {
+        $bottes = $this->findBy(
+            ['isBotte' => true],
+        );
+        $mythics = $this->findBy(
+            ['isMythic' => true],
+        );
+        $legendaries = $this->findBy(
+            ['isMythic' => false, 'isBotte' => false],
+        );
+
+        //on melange les tableaux
+        shuffle($bottes);
+        shuffle($mythics);
+        shuffle($legendaries);
+
+        //on prend une botte un mythic et 4 legendaries
+        $items = array_merge(
+            array_slice($bottes, 0, 1),
+            array_slice($mythics, 0, 1),
+            array_slice($legendaries, 0, 4)
+        );
+
+        return new \Doctrine\Common\Collections\ArrayCollection($items);
+    }
 }

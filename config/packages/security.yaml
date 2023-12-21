@@ -23,10 +23,14 @@ security:
                 target: app_application
 
     access_control:
-         - { path: ^/admin, roles: ROLE_ADMIN }
-         - { path: ^/champion, roles: ROLE_USER }
-         - { path: ^/home, roles: ROLE_USER }
-         - { path: ^/application, roles: ROLE_USER }
+        - { path: ^/login$ }
+        - { path: ^/register$ }
+        - { path: ^/logout$ }
+        - { path: ^/home, roles: ROLE_USER }
+        - { path: ^/application, roles: ROLE_USER }
+        - { path: ^/, roles: ROLE_ADMIN }
+        - { path: ^/checkCode, roles: ROLE_USER }
+
 
     access_denied_url: app_accessDenied
 

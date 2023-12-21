@@ -1,0 +1,11 @@
+# config/services.yaml
+services:
+  App\Service\EmailService:
+    arguments:
+      $mailer: '@Symfony\Component\Mailer\MailerInterface'
+
+  App\EventSubscriber\LoginSuccessSubscriber:
+    arguments:
+      $emailService: '@App\Service\EmailService'
+    tags:
+      - { name: 'kernel.event_subscriber' }

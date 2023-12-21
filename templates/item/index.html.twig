@@ -15,18 +15,35 @@
             </a>
         </div>
     </form>
+
     {% for flashMessage in app.flashes('success') %}
         <div class="alert alert-success" role="alert">
             {{ flashMessage }}
         </div>
     {% endfor %}
 
-    {% for flashMessage in app.flashes('danger') %}
+    {% for flashMessage in app.flashes('error') %}
         <div class="alert alert-danger" role="alert">
             {{ flashMessage }}
         </div>
     {% endfor %}
     <div class="container mt-4">
+
+        <div class="mb-3">
+            <label for="itemName">{{ 'input.name'|trans }} :</label>
+            <input type="text" class="form-control" id="itemName" name="itemName" value="{{ app.request.query.get('itemName') }}">
+        </div>
+
+        <div class="mb-3">
+            <label for="itemType">{{ 'filter.type'|trans }} :</label>
+            <select class="form-control" id="itemType" name="itemType">
+                <option value="">Tous</option>
+                <option value="botte" {% if app.request.query.get('itemType') == 'botte' %}selected{% endif %}>Botte</option>
+                <option value="mythic" {% if app.request.query.get('itemType') == 'mythic' %}selected{% endif %}>Mythic</option>
+                <option value="legendary" {% if app.request.query.get('itemType') == 'legendary' %}selected{% endif %}>Legendary</option>
+            </select>
+        </div>
+
         <table class="table table-bordered table-striped">
             <thead class="thead-dark">
                 <tr>
@@ -38,7 +55,8 @@
                     <th class="text-white" style="width: 100px;">Actions</th>
                 </tr>
             </thead>
-            <tbody >
+
+            <tbody id="itemBody">
                 {% for item in items %}
                     <tr>
                         <td class="text-white"><img src="{{ item.image }}" style="max-width: 100px;"></td>
@@ -55,4 +73,30 @@
         </table>
     </div>
 </div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$(document).ready(function () {
+
+    $('#itemName, #itemType').on('input change', function () {
+        filterItems();
+    });
+
+    function filterItems() {
+        var itemNameFilter = $('#itemName').val().toLowerCase();
+        var itemTypeFilter = $('#itemType').val().toLowerCase();
+
+        $('#itemBody tr').each(function () {
+            var itemName = $(this).find('td:eq(1)').text().toLowerCase();
+            var isBotte = $(this).find('td:eq(3)').text().toLowerCase();
+            var isMythic = $(this).find('td:eq(4)').text().toLowerCase();
+
+            if (itemName.indexOf(itemNameFilter) < 0 || (itemTypeFilter == 'botte' && isBotte != 'oui') || (itemTypeFilter == 'mythic' && isMythic != 'oui') || (itemTypeFilter == 'legendary' && (isBotte == 'oui' || isMythic == 'oui'))) {
+                $(this).hide();
+            } else {
+                $(this).show();
+            }
+        });
+    }
+});
+</script>
 {% endblock %}

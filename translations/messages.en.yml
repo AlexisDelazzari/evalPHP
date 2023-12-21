@@ -89,6 +89,16 @@ input:
   isMythic: "Mythic ?"
   isBotte: "Boots ?"
   bdd: "Reset database"
+  register: "Register"
+  imgSummoner: "Summoner spell"
+  imgItem: "Item"
+  imgChampion: "Champion"
+  imgRune: "Rune"
+  statue: "Status"
+  status:
+    validated: "validated"
+    refused: "refused"
+
 
 form:
   name: "Name"
@@ -182,6 +192,8 @@ filter:
   type: 'Filter by type'
   mail: 'Filter by mail'
   role: 'Filter by role'
+  status: 'Filter by status'
+  id: 'filter by ASC'
 
 item:
   nb_generate: "Number of generated items"

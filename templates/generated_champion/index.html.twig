@@ -1,20 +1,188 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello GeneratedChampionController!{% endblock %}
+{% block title %}Hello SecondaryRuneController!{% endblock %}
 
 {% block body %}
+
+<div>
+    <form class="form-inline" method="get" action="">
+        <div class="d-flex justify-content-between align-items-center w-100">
+            <a href="?_locale=fr" class="float-left" onclick="this.submit(); return false;">
+                <img class="mr-2 img-fluid" src="{{ asset('images/flags/france.png') }}" alt="French Flag" style="max-width: 100px;">
+            </a>
+            <a href="{{ path('app_admin') }}" class="btn btn-outline-danger">{{ 'Retour'|trans }}</a>
+            <a href="{{ path('app_user_add')}}" class="btn btn-outline-success mr-2" >{{ 'input.create'|trans }}</a>
+            <a href="?_locale=en" class="float-right" onclick="this.submit(); return false;">
+                <img class="img-fluid" src="{{ asset('images/flags/anglais.png') }}" alt="English Flag" style="max-width: 100px;">
+            </a>
+        </div>
+    </form>
+    {% for flashMessage in app.flashes('success') %}
+        <div class="alert alert-success" role="alert">
+            {{ flashMessage }}
+        </div>
+    {% endfor %}
+
+    {% for flashMessage in app.flashes('danger') %}
+        <div class="alert alert-danger" role="alert">
+            {{ flashMessage }}
+        </div>
+    {% endfor %}
+
+    <div class="container mt-4">
+        <div style="display: flex; justify-content: center;">
+            <div style="width: 33%;" class="mb-3 mr-4">
+                <label for="filterName">{{ 'filter.name'|trans }} :</label>
+                <input type="text" class="form-control" id="filterName">
+            </div>
+
+            <div style="width: 33%;" class="mb-3">
+                <label for="filterStatus">{{ 'filter.status'|trans }} :</label>
+                <select class="form-control" id="filterStatus">
+                    <option value="all">All</option>
+                    <option value="Validé">{{ 'input.status.validated'|trans }}</option>
+                    <option value="Refusé">{{ 'input.status.refused'|trans }}</option>
+                </select>
+            </div>
+        </div>
+
+        <table class="table table-bordered table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th class="text-white" style="width: 5%; text-align: center; vertical-align: middle;"> {{ 'input.imgChampion'|trans }}</th>
+                    <th class="text-white" style="width: 10%;text-align: center; vertical-align: middle;"> {{ 'input.imgSummoner'|trans }}</th>
+                    <th class="text-white" style="width: 10%;text-align: center; vertical-align: middle;"> {{ 'input.imgRune'|trans }}</th>
+                    <th class="text-white" style="width: 25%;text-align: center; vertical-align: middle;"> {{ 'input.imgItem'|trans }}</th>
+                    <th class="text-white" style="width: 10%;text-align: center; vertical-align: middle;"> {{ 'input.name'|trans }}</th>
+                    <th class="text-white" style="width: 5%;text-align: center; vertical-align: middle;"> {{ 'input.statue'|trans }}</th>
+                </tr>
+            </thead>
+
+            <tbody id="usersTableBody">
+                {% for generatedChampion in generatedChampions %}
+                    <tr>
+                        <td style="text-align: center; vertical-align: middle;">
+                          <img class="info-image" src="{{ asset(generatedChampion.champion.image) }}" alt="{{ generatedChampion.champion.name }}">
+                          <div class="info" data-info-for="{{ generatedChampion.champion.name }}">{{ generatedChampion.champion.name }}</div>
+                        </td>
+
+                        <td style="text-align: center; vertical-align: middle;">
+                          <img class="info-image" src="{{ asset(generatedChampion.summoner1.image) }}" alt="{{ generatedChampion.summoner1.name }}">
+                          <img class="info-image" src="{{ asset(generatedChampion.summoner2.image) }}" alt="{{ generatedChampion.summoner2.name }}">
+                          <div class="info" data-info-for="{{ generatedChampion.summoner1.name }}">{{ generatedChampion.summoner1.name }}</div>
+                          <div class="info" data-info-for="{{ generatedChampion.summoner2.name }}">{{ generatedChampion.summoner2.name }}</div>
+                        </td>
+
+                        <td style="text-align: center; vertical-align: middle;">
+                          <img class="info-image" src="{{ asset(generatedChampion.secondaryRune1.image) }}" alt="{{ generatedChampion.secondaryRune1.name }}">
+                          <img class="info-image" src="{{ asset(generatedChampion.secondaryRune2.image) }}" alt="{{ generatedChampion.secondaryRune2.name }}">
+                          <div class="info" data-info-for="{{ generatedChampion.secondaryRune1.name }}">{{ generatedChampion.secondaryRune1.name }}</div>
+                          <div class="info" data-info-for="{{ generatedChampion.secondaryRune2.name }}">{{ generatedChampion.secondaryRune2.name }}</div>
+                        </td>
+
+                        <td style="text-align: center; vertical-align: middle;">
+                          {% for item in generatedChampion.item %}
+                            <img class="info-image" src="{{ asset(item.image) }}" alt="{{ item.name }}">
+                            <div class="info" data-info-for="{{ item.name }}">{{ item.name }}</div>
+                          {% endfor %}
+                        </td>
+
+                        <td style="text-align: center; vertical-align: middle; " class="text-white">
+                          {{ generatedChampion.randomName.name }}
+                        </td>
+                        <td style="text-align: center; vertical-align: middle;">
+                          {% if generatedChampion.status.value == 'validated' %}
+                            <span class="badge badge-success">{{ 'input.status.validated'|trans }}</span>
+                          {% else %}
+                            <span class="badge badge-danger">{{ 'input.status.refused'|trans }}</span>
+                          {% endif %}
+                        </td>
+                       <td style="display: none;">
+                         {% if generatedChampion.status.value == 'validated' %}
+                           <span class="badge badge-success">Validé</span>
+                         {% else %}
+                           <span class="badge badge-danger">Refusé</span>
+                         {% endif %}
+                       </td>
+                     </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
 <style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+    /* Style de la boîte d'information */
+    .info {
+      display: none;
+      position: absolute;
+      background-color: #fff;
+      padding: 5px;
+      border: 1px solid #ccc;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      z-index: 1;
+    }
+
+    /* Style des images */
+    .info-image {
+      max-width: 50px;
+      position: relative;
+      cursor: pointer;
+    }
 </style>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+  $(document).ready(function () {
+    var infoImages = document.querySelectorAll('.info-image');
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/wamp642/www/eval/src/Controller/GeneratedChampionController.php'|file_link(0) }}">src/Controller/GeneratedChampionController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/wamp642/www/eval/templates/generated_champion/index.html.twig'|file_link(0) }}">templates/generated_champion/index.html.twig</a></code></li>
-    </ul>
-</div>
+    infoImages.forEach(function (infoImage) {
+      infoImage.addEventListener('mouseenter', function () {
+        var td = this.closest('td');
+        var info = td.querySelector('.info[data-info-for="' + this.getAttribute('alt') + '"]');
+        if (info) {
+          info.style.display = 'block';
+        }
+      });
+
+      infoImage.addEventListener('mouseleave', function () {
+        var td = this.closest('td');
+        var info = td.querySelector('.info[data-info-for="' + this.getAttribute('alt') + '"]');
+        if (info) {
+          info.style.display = 'none';
+        }
+      });
+    });
+
+    $('#filterName, #filterStatus').on('input change', function () {
+      filterUser();
+    });
+
+    function filterUser() {
+      var nameFilter = $('#filterName').val().toLowerCase();
+      var statusFilter = $('#filterStatus').val();
+
+      $('#usersTableBody tr').each(function () {
+        var userName = $(this).find('td:eq(0)').text().toLowerCase();
+        var userStatus = $(this).find('td:eq(6)').text();
+
+        userStatus = userStatus.replace(/\s/g, '');
+        userStatus = userStatus.replace(/\n/g, '');
+        userStatus = userStatus.replace(/\t/g, '');
+        userStatus = userStatus.replace(/\r/g, '');
+
+        if (
+          (userName.indexOf(nameFilter) < 0 || (statusFilter !== 'all' && userStatus !== statusFilter))
+        ) {
+          $(this).hide();
+        } else {
+          $(this).show();
+        }
+      });
+    }
+  });
+</script>
+
+
 {% endblock %}

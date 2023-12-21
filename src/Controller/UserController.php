@@ -31,10 +31,11 @@ class UserController extends AbstractController
             //on check si un email existe déjà
             $email = $entityManager->getRepository(User::class)->findOneBy(['email' => $user->getEmail()]);
             if($email){
-                $this->addFlash('danger', 'Cet email existe déjà!');
+                $this->addFlash('error', 'Cet email existe déjà!');
                 return $this->redirectToRoute('app_user');
             }
             $user->setPassword(password_hash($user->getPassword(), PASSWORD_BCRYPT));
+            $user->setIsConfirmed(true);
             $entityManager->persist($user);
             $entityManager->flush();
             $this->addFlash('success', 'Utilisateur ajouté!');

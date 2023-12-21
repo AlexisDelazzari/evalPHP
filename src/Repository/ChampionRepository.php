@@ -29,4 +29,12 @@ class ChampionRepository extends ServiceEntityRepository
 
         return $queryBuilder->getSingleScalarResult();
     }
+
+    public function getRandChampion(): Champion
+    {
+        $champions = $this->findAll();
+        shuffle($champions);
+
+        return $champions[0];
+    }
 }

@@ -40,4 +40,11 @@ class SecondaryRuneRepository extends ServiceEntityRepository
 
         return $queryBuilder->getSingleScalarResult();
     }
+
+    public function getRandSecondaryRunes(): array
+    {
+        $secondaryRunes = $this->findAll();
+        shuffle($secondaryRunes);
+        return array_slice($secondaryRunes, 0, 2);
+    }
 }

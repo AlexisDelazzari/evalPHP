@@ -6,7 +6,7 @@ use App\Enum\GeneratedChampionStatus;
 use App\Repository\GeneratedChampionRepository;
 use Doctrine\Common\Annotations\Annotation\Enum;
 use Doctrine\ORM\Mapping as ORM;
-use phpDocumentor\Reflection\Types\Collection;
+use Doctrine\Common\Collections\Collection;
 
 #[ORM\Entity(repositoryClass: GeneratedChampionRepository::class)]
 class GeneratedChampion
@@ -43,9 +43,10 @@ class GeneratedChampion
     private User $user;
 
     #[ORM\OneToMany(mappedBy: 'generatedChampion',targetEntity: Commentaire::class)]
-    private array $commentaires;
+    private Collection $commentaires;
 
     #[ORM\OneToOne(mappedBy: 'generatedChampion',targetEntity: RandomName::class)]
+    #[ORM\JoinColumn(name: 'random_name_id', referencedColumnName: 'id')]
     private RandomName $randomName;
 
 
@@ -142,14 +143,25 @@ class GeneratedChampion
         return $this;
     }
 
-    public function getCommentaires(): array
+    public function getCommentaires(): Collection
     {
         return $this->commentaires;
     }
 
-    public function setCommentaires(array $commentaires): GeneratedChampion
+    public function setCommentaires(Collection $commentaires): GeneratedChampion
     {
         $this->commentaires = $commentaires;
+        return $this;
+    }
+
+    public function getRandomName(): RandomName
+    {
+        return $this->randomName;
+    }
+
+    public function setRandomName(RandomName $randomName): GeneratedChampion
+    {
+        $this->randomName = $randomName;
         return $this;
     }
 }

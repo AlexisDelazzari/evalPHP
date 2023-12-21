@@ -28,4 +28,11 @@ class SummonerRepository extends ServiceEntityRepository
             ->getQuery()
             ->getSingleScalarResult();
     }
+
+    public function getRandSummoners(): array
+    {
+        $summoners = $this->findAll();
+        shuffle($summoners);
+        return array_slice($summoners, 0, 2);
+    }
 }

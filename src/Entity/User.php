@@ -29,6 +29,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private String $isAdmin;
 
+    #[ORM\Column]
+    private Bool $isConfirmed = false;
+
+    #[ORM\Column]
+    private String $codeMailInscription = '';
+
+    #[ORM\Column]
+    private String $codeMailReinitialisation = '';
+
     #[ORM\OneToMany(mappedBy: 'user',targetEntity: GeneratedChampion::class)]
     private Collection $generatedChampions;
 
@@ -92,6 +101,39 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setGeneratedChampions(Collection $generatedChampions): User
     {
         $this->generatedChampions = $generatedChampions;
+        return $this;
+    }
+
+    public function getIsConfirmed(): String
+    {
+        return $this->isConfirmed;
+    }
+
+    public function setIsConfirmed(String $isConfirmed): User
+    {
+        $this->isConfirmed = $isConfirmed;
+        return $this;
+    }
+
+    public function getCodeMailInscription(): String
+    {
+        return $this->codeMailInscription;
+    }
+
+    public function setCodeMailInscription(String $codeMailInscription): User
+    {
+        $this->codeMailInscription = $codeMailInscription;
+        return $this;
+    }
+
+    public function getCodeMailReinitialisation(): String
+    {
+        return $this->codeMailReinitialisation;
+    }
+
+    public function setCodeMailReinitialisation(String $codeMailReinitialisation): User
+    {
+        $this->codeMailReinitialisation = $codeMailReinitialisation;
         return $this;
     }
 

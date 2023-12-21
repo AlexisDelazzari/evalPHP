@@ -69,7 +69,7 @@ class PrimaryRuneController extends AbstractController
         $secondaryRune = $entityManager->getRepository(SecondaryRune::class)->findOneBy(['primaryRune' => $primaryRune]);
 
         if($secondaryRune){
-            $this->addFlash('danger', 'Rune utilisée dans une page de runes secondaires!');
+            $this->addFlash('error', 'Rune utilisée dans une page de runes secondaires!');
             return $this->redirectToRoute('app_secondary_rune');
         }
 

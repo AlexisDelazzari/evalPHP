@@ -1,0 +1,61 @@
+
+{% extends 'base.html.twig' %}
+
+{# Include Bootstrap CSS and JS #}
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+
+                <div class="card bg-dark text-white">
+                    <div class="card-header">
+                        <h1 class="text-center">Confirmation de l'adresse e-mail</h1>
+                    </div>
+                    <div class="card-body">
+                        <p class="text-center">Un code de confirmation vous a été envoyé par e-mail.</p>
+                        {% for flashMessage in app.flashes('success') %}
+                            <div class="alert alert-success" role="alert">
+                                {{ flashMessage }}
+                            </div>
+                        {% endfor %}
+
+                        {% for flashMessage in app.flashes('error') %}
+                            <div class="alert alert-danger" role="alert">
+                                {{ flashMessage }}
+                            </div>
+                        {% endfor %}
+
+                        <form method="post" action="{{ path('app_confirmCodeInscription') }}">
+                            {# Replace 'confirmation_route' with the actual route name where the form is submitted #}
+                                    <input type="number" id="code" name="code" class="form-control text-center" required>
+                            <button type="submit" class="btn btn-primary btn-block">Confirmer</button>
+                        </form>
+
+                        <form method="post" action="{{ path('app_resendCodeInscription') }}">
+                            <button type="submit" class="btn btn-secondary btn-block mt-3">Renvoyer le mail</button>
+                        </form>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script>
+             $('.code-input').on('input', function () {
+                    if (this.value.length === this.maxLength) {
+                        $(this).next('.code-input').focus();
+                    }
+                    if (this.value.length > this.maxLength) {
+                        this.value = this.value.slice(0, this.maxLength);
+                    }
+                });
+        </script>
+{% endblock %}

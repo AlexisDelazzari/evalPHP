@@ -22,6 +22,12 @@ class SecondaryRune
     #[ORM\ManyToOne(targetEntity: PrimaryRune::class, inversedBy: 'secondaryRunes')]
     private PrimaryRune $primaryRune;
 
+    #[ORM\OneTOMany(mappedBy: 'secondaryRune1', targetEntity: GeneratedChampion::class)]
+    private GeneratedChampion $generatedChampion1;
+
+    #[ORM\OneTOMany(mappedBy: 'secondaryRune2', targetEntity: GeneratedChampion::class)]
+    private GeneratedChampion $generatedChampion2;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -57,6 +63,28 @@ class SecondaryRune
     public function setPrimaryRune(PrimaryRune $primaryRune): SecondaryRune
     {
         $this->primaryRune = $primaryRune;
+        return $this;
+    }
+
+    public function getGeneratedChampion1(): GeneratedChampion
+    {
+        return $this->generatedChampion1;
+    }
+
+    public function setGeneratedChampion1(GeneratedChampion $generatedChampion1): SecondaryRune
+    {
+        $this->generatedChampion1 = $generatedChampion1;
+        return $this;
+    }
+
+    public function getGeneratedChampion2(): GeneratedChampion
+    {
+        return $this->generatedChampion2;
+    }
+
+    public function setGeneratedChampion2(GeneratedChampion $generatedChampion2): SecondaryRune
+    {
+        $this->generatedChampion2 = $generatedChampion2;
         return $this;
     }
 }

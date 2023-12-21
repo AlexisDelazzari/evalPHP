@@ -92,6 +92,16 @@ input:
   isBotte: "Botte ?"
   isMythic: "Mythique ?"
   bdd: "Réinitialiser la base de données"
+  register: "S'inscrire"
+  imgSummoner: "Sort d'invocateur"
+  imgItem: "Objet"
+  imgChampion: "Champion"
+  imgRune: "Rune"
+  statue: "Statut"
+  status:
+    validated: "Validé"
+    refused: "Refusé"
+
 
 form:
   name: "Nom"
@@ -179,6 +189,8 @@ filter:
   type: 'Filter par type'
   role: 'Filter par rôle'
   mail: 'Filter par mail'
+  status: 'Filter par statut'
+  id: 'Filter par ordre croissant'
 
 item:
   nb_generate: "Nombre d'objet généré"

@@ -32,8 +32,8 @@ class ItemController extends AbstractController
         $generatedChampionsItems = $entityManager->getRepository(GeneratedChampion::class)->findGeneratedChampionWithItem($id);
 
         if ($generatedChampionsItems) {
-            $this->addFlash('danger', 'Impossible de supprimer cet item car il est utilisé dans des champions générés!');
-            $this->redirectToRoute('app_item');
+            $this->addFlash('error', 'Impossible de supprimer cet item car il est utilisé dans des champions générés!');
+            return $this->redirectToRoute('app_item');
         }
 
         $entityManager->remove($item);

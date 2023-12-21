@@ -34,7 +34,7 @@ class Item
     private bool $isMythic;
 
     #[ORM\ManyToMany(targetEntity: GeneratedChampion::class, mappedBy: 'items')]
-    private Collection $items;
+    private Collection $generatedChampions;
 
 
     public function getId(): ?int
@@ -108,14 +108,15 @@ class Item
         return $this;
     }
 
-    public function getItems(): Collection
+    public function getGeneratedChampions(): Collection
     {
-        return $this->items;
+        return $this->generatedChampions;
     }
 
-    public function setItems(Collection $items): Item
+    public function setGeneratedChampions(Collection $generatedChampions): Item
     {
-        $this->items = $items;
+        $this->generatedChampions = $generatedChampions;
         return $this;
     }
+
 }

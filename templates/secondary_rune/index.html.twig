@@ -23,7 +23,7 @@
         </div>
     {% endfor %}
 
-    {% for flashMessage in app.flashes('danger') %}
+    {% for flashMessage in app.flashes('error') %}
         <div class="alert alert-danger" role="alert">
             {{ flashMessage }}
         </div>

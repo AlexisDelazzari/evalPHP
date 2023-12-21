@@ -23,18 +23,18 @@
         </div>
     {% endfor %}
 
-    {% for flashMessage in app.flashes('danger') %}
+    {% for flashMessage in app.flashes('error') %}
         <div class="alert alert-danger" role="alert">
             {{ flashMessage }}
         </div>
     {% endfor %}
     <div class="container mt-4">
         <div class="mb-3">
-            <label for="name">{{ filter.name | trans }}</label>
+            <label for="name">{{ 'filter.name' | trans }}</label>
             <input type="text" class="form-control" id="name">
         </div>
         <div class="mb-3">
-            <label for="description">{{ filter.type | trans }}</label>
+            <label for="description">{{ 'filter.type' | trans }}</label>
             <select class="form-control" id="description">
                 <option value="">Tous</option>
                 <option value="champion.top">Top</option>
@@ -99,8 +99,9 @@
             }
         });
     </script>
-
-
-
 </div>
+
+
+
+
 {% endblock %}

@@ -2,10 +2,14 @@
 
 namespace App\Controller;
 
+use App\Entity\Champion;
 use App\Entity\GeneratedChampion;
 use App\Entity\Summoner;
+use App\Form\ChampionType;
+use App\Form\SummonerType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -33,6 +37,23 @@ class SummonerController extends AbstractController
         $entityManager->flush();
         $this->addFlash('success', "Le sort d'invocateur a été supprimé avec succès.");
         return $this->redirectToRoute('app_summoner');
+    }
+
+    #[Route('/summoner/add', name: 'app_summoner_add', methods: ['GET', 'POST'])]
+    public function add(EntityManagerInterface $entityManager, Request $request): Response
+    {
+        $summoner = new Summoner();
+        $form = $this->createForm(SummonerType::class, $summoner);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->persist($summoner);
+            $entityManager->flush();
+            $this->addFlash('success', 'Summoner ajouté!');
+            return $this->redirectToRoute('app_summoner');
+        }
+        return $this->render('summoner/create.html.twig', [
+            'form' => $form->createView(),
+        ]);
     }
 
 

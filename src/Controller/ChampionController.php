@@ -28,7 +28,7 @@ class ChampionController extends AbstractController
         $champion = $entityManager->getRepository(Champion::class)->find($id);
         $generatedChampions = $entityManager->getRepository(GeneratedChampion::class)->countGeneratedChampionsByChampion($id);
         if($generatedChampions > 0){
-            $this->addFlash('danger', 'Impossible de supprimer ce champion car il est utilisé dans des champions générés!');
+            $this->addFlash('error', 'Impossible de supprimer ce champion car il est utilisé dans des champions générés!');
             return $this->redirectToRoute('app_champion');
         }
 

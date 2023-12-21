@@ -19,13 +19,15 @@ class UserFixture extends Fixture
                 'username' => 'admin',
                 'password' => password_hash('root', PASSWORD_BCRYPT),
                 'email' => 'adelazzari8@gmail.com',
-                'roles' => '1'
+                'roles' => '1',
+                'isConfirmed' => true,
             ],
             [
                 'username' => 'test',
                 'password' => password_hash('root', PASSWORD_BCRYPT) ,
                 'email' => 'test@gmail.com',
-                'roles' => '0'
+                'roles' => '0',
+                'isConfirmed' => true,
             ],
         ];
 
@@ -35,6 +37,7 @@ class UserFixture extends Fixture
             $userEntity->setPassword($user['password']);
             $userEntity->setEmail($user['email']);
             $userEntity->setIsAdmin($user['roles']);
+            $userEntity->setIsConfirmed($user['isConfirmed']);
             $manager->persist($userEntity);
             $this->addReference(self::USER_REFERENCE.$user['username'], $userEntity);
         }
