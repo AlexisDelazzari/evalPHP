@@ -60,6 +60,23 @@ secondary_runes:
   Phase_Rush: "Rush phasique"
   Summon_Aery: "Invocation d'Aery"
 
+
+Dark_Harvest: "Moisson Noire"
+Predator: "Prédateur"
+Hail_of_Blade: "Déluge de lames"
+First_Strike: "Première Frappe"
+Glacial_Augment: "Augmentation Glaciale"
+Unsealed_Spellbook: "Grimoire Déscellé"
+Conqueror: "Conquérant"
+Fleet_Footwork: "Jeu de Jambes"
+Lethal_Tempo: "Tempo Mortel"
+Press_the_Attack: "Attaque Soutenue"
+Grasp_of_the_Undying: "Poigne de l'immortel"
+Aftershock: "Réplique"
+Guardian: "Gardien"
+Arcane_Comet: "Comète Arcanique"
+Phase_Rush: "Rush phasique"
+Summon_Aery: "Invocation d'Aery"
 #primary runes
 primary_runes:
   Inspiration: "Inspiration"

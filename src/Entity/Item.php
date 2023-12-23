@@ -108,6 +108,11 @@ class Item
         return $this;
     }
 
+    public function getIsLegendary(): bool
+    {
+        return !$this->isBotte && !$this->isMythic;
+    }
+
     public function getGeneratedChampions(): Collection
     {
         return $this->generatedChampions;
@@ -117,6 +122,11 @@ class Item
     {
         $this->generatedChampions = $generatedChampions;
         return $this;
+    }
+
+    public function __toString(): string
+    {
+        return $this->name;
     }
 
 }

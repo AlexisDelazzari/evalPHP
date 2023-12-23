@@ -39,7 +39,7 @@ class AdminController extends AbstractController
         if ($generatedChampionsValided == 0) {
             $moyenne = 0;
         } else {
-            $moyenne = $generatedChampionsValided / $generatedChampions * 100;
+            $moyenne = round($generatedChampionsValided / $generatedChampions * 100, 2);
         }
 
 

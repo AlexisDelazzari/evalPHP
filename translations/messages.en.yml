@@ -60,7 +60,20 @@ secondary_runes:
   Summon_Aery: "Summon Aery"
   Electrocution: "Electrocution"
 
-
+First_Strike: "First Strike"
+Glacial_Augment: "Glacial Augment"
+Unsealed_Spellbook: "Unsealed Spellbook"
+Conqueror: "Conqueror"
+Fleet_Footwork: "Fleet Footwork"
+Lethal_Tempo: "Lethal Tempo"
+Press_the_Attack: "Press the Attack"
+Grasp_of_the_Undying: "Grasp of the Undying"
+Aftershock: "Aftershock"
+Guardian: "Guardian"
+Arcane_Comet: "Arcane Comet"
+Phase_Rush: "Phase Rush"
+Summon_Aery: "Summon Aery"
+Electrocution: "Electrocution"
 #primary runes
 primary_runes:
   Inspiration: "Inspiration"

@@ -164,4 +164,57 @@ class GeneratedChampion
         $this->randomName = $randomName;
         return $this;
     }
+
+    public function setItems(Collection $items): GeneratedChampion
+    {
+        $this->items = $items;
+        return $this;
+    }
+
+    public function getItems(): Collection
+    {
+        return $this->items;
+    }
+    public function getBotteItems(): Collection
+    {
+        return $this->items = $this->items->filter(function (Item $item) {
+            return $item->getIsBotte();
+        });
+    }
+
+    public function getMythicItems(): Collection
+    {
+        return $this->items = $this->items->filter(function (Item $item) {
+            return $item->getIsMythic();
+        });
+    }
+
+    public function getLegendaryItems(): Collection
+    {
+        return $this->items = $this->items->filter(function (Item $item) {
+            return $item->getIsLegendary();
+        });
+    }
+
+
+
+    public function setBotteItems(Collection $botteItems): GeneratedChampion
+    {
+        $this->items = $botteItems;
+        return $this;
+    }
+
+    public function setMythicItems(Collection $mythicItems): GeneratedChampion
+    {
+        $this->items = $mythicItems;
+        return $this;
+    }
+
+    public function setLegendaryItems(Collection $legendaryItems): GeneratedChampion
+    {
+        $this->items = $legendaryItems;
+        return $this;
+    }
+
+
 }

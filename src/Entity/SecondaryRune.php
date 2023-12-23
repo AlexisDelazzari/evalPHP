@@ -87,4 +87,9 @@ class SecondaryRune
         $this->generatedChampion2 = $generatedChampion2;
         return $this;
     }
+
+    public function __toString(): string
+    {
+        return $this->name;
+    }
 }
