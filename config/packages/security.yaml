@@ -27,9 +27,12 @@ security:
         - { path: ^/register$ }
         - { path: ^/logout$ }
         - { path: ^/home, roles: ROLE_USER }
+        - { path: ^/save, roles: ROLE_USER }
+        - { path: ^/commentaire, roles: ROLE_USER }
         - { path: ^/application, roles: ROLE_USER }
         - { path: ^/, roles: ROLE_ADMIN }
         - { path: ^/checkCode, roles: ROLE_USER }
+
 
 
     access_denied_url: app_accessDenied
