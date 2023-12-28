@@ -80,45 +80,19 @@ class GeneratedChampionType extends AbstractType
                 ],
                 'required' => true
             ])
-            ->add('botteItems', EntityType::class, [
-                'label' => 'Bottes',
-                'choice_label' => 'name',
-                'class' => Item::class,
 
-                'required' => true,
-                'expanded' => true,
-                'query_builder' => function (ItemRepository $itemRepository) {
-                    return $itemRepository->createQueryBuilder('i')
-                        ->where('i.isBotte = true');
-                }
-            ])
-
-            ->add('mythicItems', EntityType::class, [
-                'label' => 'Items mythiques',
-                'choice_label' => 'name',
-                'class' => Item::class,
-
-                'required' => true,
-                'expanded' => true,
-                'query_builder' => function (ItemRepository $itemRepository) {
-                    return $itemRepository->createQueryBuilder('i')
-                        ->where('i.isMythic = true');
-                }
-            ])
-
-            ->add('legendaryItems', EntityType::class, [
+            ->add('items', EntityType::class, [
                 'label' => 'Items',
-                'choice_label' => 'name',
                 'class' => Item::class,
-
-                'required' => true,
+                'choice_label' => 'name',
                 'multiple' => true,
+                'choices' => [
+                    'Bottes' => $options['items']['bottes'],
+                    'Mythiques' => $options['items']['mythiques'],
+                    'Légendaires' => $options['items']['legendaires'],
+                ],
                 'expanded' => true,
-                'query_builder' => function (ItemRepository $itemRepository) {
-                    return $itemRepository->createQueryBuilder('i')
-                        ->where('i.isBotte = false')
-                        ->andWhere('i.isMythic = false');
-                }
+                'required' => true
             ])
 
             ->add('status', EnumType::class, [
@@ -149,6 +123,7 @@ class GeneratedChampionType extends AbstractType
                 new Callback([$this, 'validateSummoners'])
             ],
             'by_reference' => false,
+            'items' =>  [],
         ]);
     }
 
@@ -170,38 +145,24 @@ class GeneratedChampionType extends AbstractType
                 ->atPath('secondaryRune1')
                 ->addViolation();
          }
-       //on regarde si on a une botte dans les items
-       $botte = false;
-       foreach ($data->getBotteItems() as $item) {
-           if ($item->getIsBotte()) {
-               $botte = true;
+           $bottesCount = 0;
+           $mythicCount = 0;
+           $legendaireCount = 0;
+
+           foreach ($data->getItems() as $item) {
+               if ($item->getIsBotte()) {
+                   $bottesCount++;
+               } elseif ($item->getIsMythic()) {
+                   $mythicCount++;
+               } else {
+                   $legendaireCount++;
+               }
            }
-       }
-       if (!$botte) {
-           $context->buildViolation('Il faut au moins une botte')
-               ->atPath('botteItems')
-               ->addViolation();
-       }
 
-       //on regarde si on a un item mythique dans les items
-       $mythic = false;
-       foreach ($data->getMythicItems() as $item) {
-           if ($item->getIsMythic()) {
-               $mythic = true;
+           if ($bottesCount !== 1 || $mythicCount !== 1 || $legendaireCount !== 4) {
+               $context->buildViolation('Il doit y avoir 1 paire de bottes, 1 item mythique et 4 items légendaires')
+                   ->atPath('champion')
+                   ->addViolation();
            }
-       }
-
-       if (!$mythic) {
-           $context->buildViolation('Il faut au moins un item mythique')
-               ->atPath('mythicItems')
-               ->addViolation();
-       }
-
-       //on regarde si on a 6 items
-       if (count($data->getLegendaryItems()) !== 6) {
-           $context->buildViolation('Il faut 6 items')
-               ->atPath('legendaryItems')
-               ->addViolation();
-       }
    }
 }

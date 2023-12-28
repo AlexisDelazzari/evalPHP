@@ -107,7 +107,11 @@ input:
   imgItem: "Item"
   imgChampion: "Champion"
   imgRune: "Rune"
+  message: "Comment"
   statue: "Status"
+  validate: "Validate generation"
+  refuse: "Refuse generation"
+  placeholder: "Write your comment here"
   status:
     validated: "validated"
     refused: "refused"
@@ -213,3 +217,5 @@ item:
   nb_mythic: "Number of mythic items"
   nb_legendary: "Number of legendary items"
   nb_botte: "Number of boots"
+
+Spin: "Generate a random champion"

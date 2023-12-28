@@ -9,8 +9,20 @@
     <div class="card-header text-center"  >
         <div class="form-group" style="width: 50%; margin-left: 25%;">
             {{ form_start(form) }}
-            {{ form_widget(form) }}
-            {{ form_end(form) }}
+
+                {% for category, choices in form.items.vars.choices %}
+                    <h2>{{ category }}</h2>
+                    {% for item in choices %}
+                        <div>
+                            <label>
+                                {{ form_widget(form.items[item.value]) }}
+                                {{ item.label }}
+                            </label>
+                        </div>
+                    {% endfor %}
+                {% endfor %}
+
+                {{ form_end(form) }}
 
         </div>
     </div>
@@ -20,6 +32,4 @@
     li {
         color: red;
     }
-
-
 {% endblock %}

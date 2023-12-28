@@ -38,20 +38,34 @@ class GeneratedChampionController extends AbstractController
     public function add(EntityManagerInterface $entityManager, Request $request): Response
     {
         $generatedChampion = new GeneratedChampion();
-        $items = $entityManager->getRepository(Item::class)->findAll();
-
-        $form = $this->createForm(GeneratedChampionType::class, $generatedChampion);
+        $items = [
+            'bottes' => $entityManager->getRepository(Item::class)->findBy(['isBotte' => true]),
+            'mythiques' => $entityManager->getRepository(Item::class)->findBy(['isMythic' => true]),
+            'legendaires' => $entityManager->getRepository(Item::class)->findBy(['isMythic' => false, 'isBotte' => false]),
+        ];
+        $form = $this->createForm(GeneratedChampionType::class, $generatedChampion, [
+            'items' => $items,
+        ]);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            dd($generatedChampion);
             $randomName = 'Champion ' . rand(0, 100000);
             $randomNameEntity = new RandomName();
             $randomNameEntity->setName($randomName);
             $entityManager->persist($randomNameEntity);
             $entityManager->flush();
+
+            $generatedChampion->setStatus($form->get('status')->getData());
+            $generatedChampion->setUser($form->get('user')->getData());
+            $generatedChampion->setChampion($form->get('champion')->getData());
+            $generatedChampion->setSummoner1($form->get('summoner1')->getData());
+            $generatedChampion->setSummoner2($form->get('summoner2')->getData());
+            $generatedChampion->setSecondaryRune1($form->get('secondaryRune1')->getData());
+            $generatedChampion->setSecondaryRune2($form->get('secondaryRune2')->getData());
+            $generatedChampion->setItems($form->get('items')->getData());
             $generatedChampion->setRandomName($randomNameEntity);
             $entityManager->persist($generatedChampion);
             $entityManager->flush();
+
             $this->addFlash('success', 'Generated champion created');
             return $this->redirectToRoute('app_generated_champion');
         }

@@ -41,6 +41,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'user',targetEntity: GeneratedChampion::class)]
     private Collection $generatedChampions;
 
+    #[ORM\OneToMany(mappedBy: 'user',targetEntity: Commentaire::class)]
+    private Collection $commentaires;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -90,6 +93,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setIsAdmin(String $isAdmin): User
     {
         $this->isAdmin = $isAdmin;
+        return $this;
+    }
+
+    public function getCommentaires(): Collection
+    {
+        return $this->commentaires;
+    }
+
+    public function setCommentaires(Collection $commentaires): User
+    {
+        $this->commentaires = $commentaires;
         return $this;
     }
 

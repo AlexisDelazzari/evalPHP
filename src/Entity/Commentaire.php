@@ -16,8 +16,11 @@ class Commentaire
     #[ORM\Column]
     private string $texte;
 
-    #[ORM\OneToOne]
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'commentaires')]
     private User $user;
+
+    #[ORM\ManyToOne(targetEntity: GeneratedChampion::class, inversedBy: 'commentaires')]
+    private GeneratedChampion $generatedChampion;
 
     public function getId(): ?int
     {
@@ -43,6 +46,17 @@ class Commentaire
     public function setUser(User $user): Commentaire
     {
         $this->user = $user;
+        return $this;
+    }
+
+    public function getGeneratedChampion(): GeneratedChampion
+    {
+        return $this->generatedChampion;
+    }
+
+    public function setGeneratedChampion(GeneratedChampion $generatedChampion): Commentaire
+    {
+        $this->generatedChampion = $generatedChampion;
         return $this;
     }
 }

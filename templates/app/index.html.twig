@@ -1,36 +1,512 @@
-{# templates/home/index.html.twig #}
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">{{ 'Random_Champion'|trans }}</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link {% if app.request.attributes.get('_route') == 'app_admin' %}active{% endif %}" href="{{ path('app_admin') }}">{{ 'Admin'|trans }}</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link {% if app.request.attributes.get('_route') == 'app_user' %}active{% endif %}" href="{{ path('app_user') }}">{{ 'Account'|trans }}</a>
-                </li>
-            </ul>
-        </div>
-        <form class="form-inline" method="get" action="">
-            <select class="custom-select" name="_locale" onchange="this.form.submit()">
-                <option value="fr" {% if app.request.locale == 'fr' %}selected{% endif %}>
-                    <img class="mr-2" src="{{ asset('images/flags/france.png') }}" alt="French Flag"> {{ 'French'|trans }}
-                </option>
-                <option value="en" {% if app.request.locale == 'en' %}selected{% endif %}>
-                    <img src="{{ asset('images/flags/anglais.png') }}" alt="English Flag"> {{ 'English'|trans }}
-                </option>
-            </select>
-            <a href="{{ path('app_logout') }}" class="btn btn-outline-danger ml-2">{{ 'Logout'|trans }}</a>
-        </form>
-    </nav>
 
-    <div class="container mt-3">
-        <h1>{{ 'Random_Champion'|trans }}</h1>
+<div>
+    <form class="form-inline" method="get" action="">
+        <div class="d-flex justify-content-between align-items-center w-100">
+            <a href="?_locale=fr" class="float-left" onclick="this.submit(); return false;">
+                <img class="mr-2 img-fluid" src="{{ asset('images/flags/france.png') }}" alt="French Flag" style="max-width: 100px;">
+            </a>
+            <a href="{{ path('app_application') }}" class="btn btn-outline-danger">{{ 'Retour'|trans }}</a>
+            <a href="?_locale=en" class="float-right" onclick="this.submit(); return false;">
+                <img class="img-fluid" src="{{ asset('images/flags/anglais.png') }}" alt="English Flag" style="max-width: 100px;">
+            </a>
+        </div>
+    </form>
+    {% for flashMessage in app.flashes('success') %}
+        <div class="alert alert-success" role="alert">
+            {{ flashMessage }}
+        </div>
+    {% endfor %}
+
+    {% for flashMessage in app.flashes('error') %}
+        <div class="alert alert-danger" role="alert">
+            {{ flashMessage }}
+        </div>
+    {% endfor %}
+
+
+<div class="container">
+    <div class="machine">
+        <div class="slot-machine" id="champion-machine">
+            <div class="slot-column" id="champion-column">
+                {% for champion in champions %}
+                    <img src="{{ champion.image }}" alt="{{ champion.name }}" class="slot-item" data-champion="{{ champion.name }}">
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="slot-machine" id="summoner1-machine">
+            <div class="slot-column" id="summoner1-column">
+                {% for summoner in summoners1 %}
+                    <img src="{{ summoner.image }}" alt="{{ summoner.name }}" class="slot-item" data-champion="{{ summoner.name }}">
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="slot-machine" id="summoner2-machine">
+            <div class="slot-column" id="summoner2-column">
+                {% for summoner in summoners2 %}
+                    <img src="{{ summoner.image }}" alt="{{ summoner.name }}" class="slot-item" data-champion="{{ summoner.name }}">
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="slot-machine" id="rune1-machine">
+            <div class="slot-column" id="rune1-column">
+                {% for rune in runes1 %}
+                    <img src="{{ rune.image }}" alt="{{ rune.name }}" class="slot-item" data-champion="{{ rune.name }} | {{ rune.primaryRune.name }}">
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="slot-machine" id="rune2-machine">
+            <div class="slot-column" id="rune2-column">
+                {% for rune in runes2 %}
+                    <img src="{{ rune.image }}" alt="{{ rune.name }}" class="slot-item" data-champion="{{ rune.name }} | {{ rune.primaryRune.name }}">
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- Add new slot machines -->
+        <div class="slot-machine" id="items1-machine">
+            <div class="slot-column" id="items1-column">
+                {% for item in items1 %}
+                    <img src="{{ item.image }}" alt="{{ item.name }}" class="slot-item" data-champion="{{ item.name }}">
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="slot-machine" id="items2-machine">
+            <div class="slot-column" id="items2-column">
+                {% for item in items2 %}
+                    <img src="{{ item.image }}" alt="{{ item.name }}" class="slot-item" data-champion="{{ item.name }}">
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="slot-machine" id="items3-machine">
+            <div class="slot-column" id="items3-column">
+                {% for item in items3 %}
+                    <img src="{{ item.image }}" alt="{{ item.name }}" class="slot-item" data-champion="{{ item.name }}">
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="slot-machine" id="items4-machine">
+            <div class="slot-column" id="items4-column">
+                {% for item in items4 %}
+                    <img src="{{ item.image }}" alt="{{ item.name }}" class="slot-item" data-champion="{{ item.name }}">
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="slot-machine" id="bottesItems-machine">
+            <div class="slot-column" id="bottesItems-column">
+                {% for item in botteItems %}
+                    <img src="{{ item.image }}" alt="{{ item.name }}" class="slot-item" data-champion="{{ item.name }}">
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="slot-machine" id="mythicItems-machine">
+            <div class="slot-column" id="mythicItems-column">
+                {% for item in mythicItems %}
+                    <img src="{{ item.image }}" alt="{{ item.name }}" class="slot-item" data-champion="{{ item.name }}">
+                {% endfor %}
+            </div>
+        </div>
     </div>
+    <button onclick="startAllSlotMachines()" class="btn btn-primary btn-lg btn-block">{{ 'Spin'|trans }}</button>
+</div>
+<div class="validate mt-3">
+    <button class="btn btn-success mr-4"disabled onclick="sendData('validated')">{{ 'Validate'|trans }}</button>
+    <button class="btn btn-danger " disabled onclick="sendData('refused')">{{ 'Refuse'|trans }}</button>
+<div>
+<div class="generate">
+        <div class="table-container">
+            <table class="table table-hover table-dark">
+                <thead class="thead-dark">
+                    <tr>
+                        <th class="text-white" style="width: 5%; text-align: center; vertical-align: middle;"> {{ 'input.imgChampion'|trans }}</th>
+                        <th class="text-white" style="width: 10%;text-align: center; vertical-align: middle;"> {{ 'input.imgSummoner'|trans }}</th>
+                        <th class="text-white" style="width: 10%;text-align: center; vertical-align: middle;"> {{ 'input.imgRune'|trans }}</th>
+                        <th class="text-white" style="width: 25%;text-align: center; vertical-align: middle;"> {{ 'input.imgItem'|trans }}</th>
+                        <th class="text-white" style="width: 10%;text-align: center; vertical-align: middle;"> {{ 'input.name'|trans }}</th>
+                        <th class="text-white" style="width: 5%;text-align: center; vertical-align: middle;"> {{ 'input.statue'|trans }}</th>
+                    </tr>
+                </thead>
+
+                <tbody id="usersTableBody">
+                    {% for generatedChampion in generatedChampions %}
+                        <tr class="selectable-row" data-champion-id="{{ generatedChampion.id }}" style="cursor: pointer;
+                            {% if app.request.query.get('id') == generatedChampion.id %}
+                                background-color: black;
+                            {% endif %}>">
+                            <td style="text-align: center; vertical-align: middle;">
+                              <img class="info-image" src="{{ asset(generatedChampion.champion.image) }}" alt="{{ generatedChampion.champion.name }}">
+                            </td>
+
+                            <td style="text-align: center; vertical-align: middle;">
+                              <img class="info-image" src="{{ asset(generatedChampion.summoner1.image) }}" alt="{{ generatedChampion.summoner1.name }}">
+                              <img class="info-image" src="{{ asset(generatedChampion.summoner2.image) }}" alt="{{ generatedChampion.summoner2.name }}">
+                            </td>
+
+                            <td style="text-align: center; vertical-align: middle;">
+                              <img class="info-image" src="{{ asset(generatedChampion.secondaryRune1.image) }}" alt="{{ generatedChampion.secondaryRune1.name }}">
+                              <img class="info-image" src="{{ asset(generatedChampion.secondaryRune2.image) }}" alt="{{ generatedChampion.secondaryRune2.name }}">
+                            </td>
+
+                            <td style="text-align: center; vertical-align: middle;">
+                              {% for item in generatedChampion.item %}
+                                <img class="info-image" src="{{ asset(item.image) }}" alt="{{ item.name }}">
+                              {% endfor %}
+                            </td>
+
+                            <td style="text-align: center; vertical-align: middle; " class="text-white">
+                              {{ generatedChampion.randomName.name }}
+                            </td>
+                            <td style="text-align: center; vertical-align: middle;">
+                              {% if generatedChampion.status.value == 'validated' %}
+                                <span class="badge badge-success">{{ 'input.status.validated'|trans }}</span>
+                              {% else %}
+                                <span class="badge badge-danger">{{ 'input.status.refused'|trans }}</span>
+                              {% endif %}
+                            </td>
+                           <td style="display: none;">
+                             {% if generatedChampion.status.value == 'validated' %}
+                               <span class="badge badge-success">Validé</span>
+                             {% else %}
+                               <span class="badge badge-danger">Refusé</span>
+                             {% endif %}
+                           </td>
+                         </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+        </div>
+        <div class="message">
+            <h3 class="text-center">{{ 'input.message'|trans }}</h3>
+
+            <div class="messaging-container">
+                <div class="message-list">
+                    {% for generatedChampion in generatedChampions %}
+                        {% if generatedChampion.id == app.request.query.get('id') %}
+                            {% for commentaire in generatedChampion.commentaires %}
+                               <div class="message-item {% if loop.index is odd %}message-right{% else %}message-left{% endif %}">
+                                   {{ commentaire.texte }}
+                               </div>
+                            {% endfor %}
+                        {% endif %}
+                    {% endfor %}
+                </div>
+
+                <div class="message-footer">
+                    <textarea id="newMessage" placeholder="{{ 'input.placeholder'|trans }}"></textarea>
+                    <img id="sendIcon" src="{{ asset('images/Admin/send.png') }}" alt="Send" id="sendMessage"
+                        onclick="window.location.href = '{{ path('app_commentaire_add') }}?id=' + {{ app.request.query.get('id') }} + '&text=' + document.getElementById('newMessage').value;"
+                    >
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+<style>
+    body {
+       overflow-y: hidden;
+    }
+    #sendIcon {
+        width: 50px;
+        height: 50px;
+        cursor: pointer;
+    }
+    #sendIcon:hover {
+        opacity: 0.8;
+    }
+    .messaging-container {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        height: 90%;
+    }
+
+    .message-list {
+        flex-grow: 1;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+
+    .message-item {
+        padding: 10px;
+        margin: 5px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        word-wrap: break-word;
+    }
+
+    .message-right {
+        margin-left: 50%;
+        width: 50%;
+        color: black;
+        background-color: #e6f7ff;
+    }
+
+    .message-left {
+        align-self: flex-start;
+        color: black;
+        width: 50%;
+        background-color: #f0f0f0;
+    }
+
+    .message-footer {
+        display: flex;
+        padding: 10px;
+        background-color: #f0f0f0;
+    }
+
+    textarea {
+        flex-grow: 1;
+        resize: none;
+        margin-right: 10px;
+    }
+
+    .info {
+      display: none;
+      position: absolute;
+      background-color: #fff;
+      padding: 5px;
+      border: 1px solid #ccc;
+
+    }
+
+    /* Style des images */
+    .info-image {
+      max-width: 50px;
+
+    }
+    .machine {
+        display: flex;
+        justify-content: space-around;
+    }
+
+    .slot-machine {
+        overflow: hidden;
+        height: 110px;
+        width: 400px;
+    }
+
+    .slot-column {
+        display: flex;
+        flex-direction: column-reverse;
+        align-items: center;
+        text-align: center;
+        transition: transform 5s ease-out;
+    }
+
+    .slot-item {
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+        margin-bottom: 10px;
+    }
+
+    .table-container {
+        overflow-x: auto;
+        width: 65%;
+        height: 400px;
+        margin-top: 100px;
+    }
+    .message {
+        border: 5px solid white;
+        height: 400px;
+        width: 30%;
+        margin-top: 100px;
+        border-radius: 10px;
+    }
+    .generate {
+        display: flex;
+        justify-content: space-around;
+        margin-top: 50px;
+    }
+    .validate {
+        text-align: center;
+    }
+</style>
+
+<script>
+
+    let selectedItem = '';
+    let animationDuration = 5000;
+    let resetDelay = 500;
+
+    function startAllSlotMachines() {
+        document.querySelector('button').disabled = true;
+
+        startSlotMachine('champion-column');
+        startSlotMachine('summoner1-column');
+        startSlotMachine('summoner2-column');
+        startSlotMachine('rune1-column');
+        startSlotMachine('rune2-column');
+        startSlotMachine('items1-column');
+        startSlotMachine('items2-column');
+        startSlotMachine('items3-column');
+        startSlotMachine('items4-column');
+        startSlotMachine('bottesItems-column');
+        startSlotMachine('mythicItems-column');
+
+        setTimeout(() => {
+            var originalElement = document.getElementById('summoner1-column').querySelector('.slot-item:last-child');
+            var clonedElement = originalElement.cloneNode(true);
+            document.getElementById('summoner2-column').prepend(clonedElement);
+
+            var originalElement = document.getElementById('rune1-column').querySelector('.slot-item:last-child');
+            var primary = originalElement.dataset.champion.split('|')[1];
+            document.getElementById('rune1-column').querySelectorAll('.slot-item').forEach(function (item) {
+                if(item.dataset.champion.split('|')[1] == primary){
+                    var clonedElement = item.cloneNode(true);
+                    document.getElementById('rune2-column').prepend(clonedElement);
+                }
+            });
+
+            var originalElement = document.getElementById('items1-column').querySelector('.slot-item:last-child');
+            var clonedElement1 = originalElement.cloneNode(true);
+            document.getElementById('items2-column').prepend(clonedElement1);
+            var clonedElement2 = originalElement.cloneNode(true);
+            document.getElementById('items3-column').prepend(clonedElement2);
+            var clonedElement3 = originalElement.cloneNode(true);
+            document.getElementById('items4-column').prepend(clonedElement3);
+
+            var originalElement = document.getElementById('items2-column').querySelector('.slot-item:last-child');
+            var clonedElement1 = originalElement.cloneNode(true);
+            document.getElementById('items3-column').prepend(clonedElement1);
+            var clonedElement2 = originalElement.cloneNode(true);
+            document.getElementById('items4-column').prepend(clonedElement2);
+
+            var originalElement = document.getElementById('items3-column').querySelector('.slot-item:last-child');
+            var clonedElement = originalElement.cloneNode(true);
+            document.getElementById('items4-column').prepend(clonedElement);
+            document.querySelector('button').disabled = false;
+            document.querySelector('.validate').querySelectorAll('button').forEach(function (button) {
+                button.disabled = false;
+            });
+
+
+        }, animationDuration + resetDelay);
+    }
+
+    function startSlotMachine(columnId) {
+        const slotColumn = document.getElementById(columnId);
+        const startButton = slotColumn.querySelector('button');
+
+        const slotContainer = slotColumn;
+
+        const items = Array.from(slotContainer.querySelectorAll('.slot-item')).sort(() => Math.random() - 0.5);
+        items.forEach(item => slotContainer.appendChild(item));
+
+        slotContainer.style.transition = `transform ${animationDuration / 1000}s ease-out`;
+        slotContainer.style.transform = 'translateY(-90%)';
+
+        setTimeout(() => {
+            const lastItem = slotContainer.querySelector('.slot-item:last-child');
+            selectedItem = lastItem.dataset.champion;
+
+            slotContainer.style.transition = 'none';
+            slotContainer.style.transform = 'translateY(0)';
+
+            setTimeout(() => {
+                slotContainer.style.transition = `transform ${animationDuration / 1000}s ease-out`;
+            }, resetDelay);
+
+            if(columnId == 'summoner1-column'){
+                document.getElementById('summoner2-column').querySelectorAll('.slot-item').forEach(function (item) {
+                    if(item.dataset.champion == selectedItem){
+                        item.remove();
+                    }
+                });
+            }
+
+            if(columnId == 'rune1-column'){
+                document.getElementById('rune2-column').querySelectorAll('.slot-item').forEach(function (item) {
+                    if(item.dataset.champion == selectedItem || item.dataset.champion.split('|')[1] == selectedItem.split('|')[1]){
+                        item.remove();
+                    }
+                });
+            }
+
+            if(columnId == 'items1-column'){
+                document.getElementById('items2-column').querySelectorAll('.slot-item').forEach(function (item) {
+                    if(item.dataset.champion == selectedItem){
+                        item.remove();
+                    }
+                });
+                document.getElementById('items3-column').querySelectorAll('.slot-item').forEach(function (item) {
+                    if(item.dataset.champion == selectedItem){
+                        item.remove();
+                    }
+                });
+                document.getElementById('items4-column').querySelectorAll('.slot-item').forEach(function (item) {
+                    if(item.dataset.champion == selectedItem){
+                        item.remove();
+                    }
+                });
+            }
+
+            if(columnId == 'items2-column'){
+                document.getElementById('items3-column').querySelectorAll('.slot-item').forEach(function (item) {
+                    if(item.dataset.champion == selectedItem){
+                        item.remove();
+                    }
+                });
+                document.getElementById('items4-column').querySelectorAll('.slot-item').forEach(function (item) {
+                    if(item.dataset.champion == selectedItem){
+                        item.remove();
+                    }
+                });
+            }
+
+            if(columnId == 'items3-column'){
+                document.getElementById('items4-column').querySelectorAll('.slot-item').forEach(function (item) {
+                    if(item.dataset.champion == selectedItem){
+                        item.remove();
+                    }
+                });
+            }
+        }, animationDuration);
+    }
+    sendData = function (status) {
+        var post = {
+            champion: document.getElementById('champion-column').querySelector('.slot-item:last-child').dataset.champion,
+            summoner1: document.getElementById('summoner1-column').querySelector('.slot-item:last-child').dataset.champion,
+            summoner2: document.getElementById('summoner2-column').querySelector('.slot-item:last-child').dataset.champion,
+            rune1: document.getElementById('rune1-column').querySelector('.slot-item:last-child').dataset.champion.split('|')[0],
+            rune2: document.getElementById('rune2-column').querySelector('.slot-item:last-child').dataset.champion.split('|')[0],
+            item1: document.getElementById('items1-column').querySelector('.slot-item:last-child').dataset.champion,
+            item2: document.getElementById('items2-column').querySelector('.slot-item:last-child').dataset.champion,
+            item3: document.getElementById('items3-column').querySelector('.slot-item:last-child').dataset.champion,
+            item4: document.getElementById('items4-column').querySelector('.slot-item:last-child').dataset.champion,
+            bottesItem: document.getElementById('bottesItems-column').querySelector('.slot-item:last-child').dataset.champion,
+            mythicItem: document.getElementById('mythicItems-column').querySelector('.slot-item:last-child').dataset.champion,
+            status: status
+        };
+
+        window.location.href = "{{ path('app_save') }}?champion=" + post.champion + "&summoner1=" + post.summoner1 + "&summoner2=" + post.summoner2 + "&rune1=" + post.rune1 + "&rune2=" + post.rune2 + "&item1=" + post.item1 + "&item2=" + post.item2 + "&item3=" + post.item3 + "&item4=" + post.item4 + "&bottesItem=" + post.bottesItem + "&mythicItem=" + post.mythicItem + "&status=" + post.status;
+
+        document.querySelector('.validate').querySelectorAll('button').forEach(function (button) {
+            button.disabled = true;
+        });
+    }
+    document.addEventListener('DOMContentLoaded', function () {
+        var rows = document.querySelectorAll('.selectable-row');
+
+        rows.forEach(function (row) {
+            row.addEventListener('click', function () {
+                var championId = row.dataset.championId;
+                window.location.href = "{{ path('app_home') }}?id=" + championId;
+            });
+        });
+    });
+</script>
 {% endblock %}

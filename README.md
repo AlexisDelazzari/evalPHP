@@ -38,7 +38,9 @@ Une authentification robuste assure la sécurité des comptes utilisateurs, avec
 
 ##  Utilisation
 
-veuillez suivre les étapes suivantes pour utiliser l'application :
+Vous pouvez utiliser l'application en ligne avec les identifiants ci-dessous à l'adresse suivante : [https://alexisdelazzari.com/evalphp/public/login](https://alexisdelazzari.com/evalphp/public/login)
+
+Veuillez suivre les étapes suivantes pour utiliser l'application :
 
 1. Téléchargez le projet en cliquant sur le bouton vert `Code` en haut à droite de la page, puis en cliquant sur `Download ZIP`.
 2. Décompressez le fichier ZIP dans le dossier www de votre serveur local (wamp, xampp, etc.) pour l'exemple le dossier utilisé sera eval.
@@ -76,6 +78,29 @@ Vous aller devoir également créer une base de données locale pour pouvoir uti
     La première commande va installer les dépendances du projet, la deuxième va créer la base de données, la troisième va créer les tables de la base de données, et la dernière va insérer des données de test dans la base de données.
 3. Vous pouvez maintenant lancer l'application via wamp par exemple.
 * Vous pouvez maintenant accéder à l'application en ouvrant votre navigateur et en entrant l'adresse suivante : `http://localhost/eval/public/application`
+
+## Fonctionnalités Principales
+
+### 1. Synthèse des Fonctionnalités Principales
+
+Il est possible de faire un certain nombre d'actions sur l'application, en fonction de votre rôle (utilisateur ou administrateur). Vous pouvez voir ci-dessous un tableau récapitulatif des fonctionnalités disponibles pour chaque rôle.
+
+Un utilisateur peut :
+
+Se connecter et se déconnecter de l'application. Il peut également créer un compte utilisateur avec une vérification à l'aide d'un email de confirmation et d'un token.
+Il peut également se rendre sur la page du jeu principale et générer un champion aléatoire. Il peut également sauvegarder ce champion dans sa liste de champions sauvegardés.
+Pour ce faire un système de casino à été réalisé et le joueurs peut refuser un champion ou l'accepter et donc le sauvegarder ou le rejeter et donc le supprimer.
+Pour chaque champion généré il peut écrire des commentaires qui seront associés à ce champion.
+Pour finir il à un historique de ses champions générés et sauvegardés.
+
+Un administrateur peut :
+
+Faire tout ce qu'un utilisateur peut faire.
+Il peut également se rendre sur la page d'administration et gérer les entités du jeu (champions, runes, items, summoners).
+Il à un récapitulatif de toutes les entités du jeu et peut les modifier, les supprimer ou en créer de nouvelles.
+Il peut également gérer les utilisateurs de l'application, en les supprimant ou en les rendant administrateur.
+
+
 
 ## Améliorations Futures
 

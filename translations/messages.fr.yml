@@ -115,6 +115,10 @@ input:
   imgChampion: "Champion"
   imgRune: "Rune"
   statue: "Statut"
+  message: "Commentaire"
+  validate: "Valider la génération"
+  refuse: "Refuser la génération"
+  placeholder: "Écrivez votre commentaire ici"
   status:
     validated: "Validé"
     refused: "Refusé"
@@ -214,3 +218,5 @@ item:
   nb_mythic: "Nombre d'objet mythique généré"
   nb_legendary: "Nombre d'objet légendaire généré"
   nb_botte: "Nombre de botte généré"
+
+Spin: "Générer un champion aléatoire"
