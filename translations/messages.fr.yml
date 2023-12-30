@@ -131,6 +131,9 @@ form:
   color: "Couleur"
   username: "Nom d'utilisateur"
   password: "Mot de passe"
+  price: "Prix"
+  isBotte: "Botte ?"
+  isMythic: "Mythique ?"
 
 create_secondary_rune: "Créer une rune secondaire"
 
@@ -220,3 +223,5 @@ item:
   nb_botte: "Nombre de botte généré"
 
 Spin: "Générer un champion aléatoire"
+Validate: "Valider"
+Refuse: "Refuser"

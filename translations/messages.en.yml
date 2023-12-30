@@ -126,6 +126,9 @@ form:
   email: "Email"
   password: "Password"
   isAdmin: "Admin ?"
+  price: "Price"
+  isBotte: "Boots ?"
+  isMythic: "Mythic ?"
 
 
 create_secondary_rune: "Create secondary rune"
@@ -219,3 +222,5 @@ item:
   nb_botte: "Number of boots"
 
 Spin: "Generate a random champion"
+Validate: "Validate"
+Refuse: "Refuse"
